@@ -1,0 +1,2491 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    102838,       2483]
+NotebookOptionsPosition[     98778,       2403]
+NotebookOutlinePosition[     99114,       2418]
+CellTagsIndexPosition[     99071,       2415]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Geosynchronous Orbit", "Title",
+ CellChangeTimes->{{3.7044951188681192`*^9, 3.7044951488377743`*^9}, {
+  3.746109005402746*^9, 3.746109017119534*^9}, {3.765199433187746*^9, 
+  3.765199435978487*^9}},ExpressionUUID->"eda616d9-56dc-4dce-adf7-\
+2352ca44c80f"],
+
+Cell[CellGroupData[{
+
+Cell["Arbitrary Circular Orbit", "Chapter",
+ CellChangeTimes->{{3.765200363045394*^9, 
+  3.765200374748208*^9}},ExpressionUUID->"da4d2059-e7cd-49ba-899d-\
+6736bd48c352"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"second", "=", "1"}], ";", 
+  RowBox[{"minute", "=", 
+   RowBox[{"60", " ", "second"}]}], ";", 
+  RowBox[{"hour", "=", 
+   RowBox[{"60", "minute"}]}], ";", 
+  RowBox[{"day", "=", 
+   RowBox[{"24", "hour"}]}], ";", 
+  RowBox[{"year", "=", 
+   RowBox[{"365.25", "day"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Earth", "[", "t_", "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Satellite", "[", 
+    RowBox[{
+    "t_", ",", "\[Theta]x_", ",", "\[Theta]y_", ",", "period_", ",", 
+     "orbitalRadius_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"Earth", "[", "t", "]"}], "+", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", GridBox[{
+         {
+          RowBox[{"Cos", "[", "\[Theta]y", "]"}], "0", 
+          RowBox[{"Sin", "[", "\[Theta]y", "]"}]},
+         {"0", "1", "0"},
+         {
+          RowBox[{"-", 
+           RowBox[{"Sin", "[", "\[Theta]y", "]"}]}], "0", 
+          RowBox[{"Cos", "[", "\[Theta]y", "]"}]}
+        }], ")"}], ".", 
+      RowBox[{"(", GridBox[{
+         {"1", "0", "0"},
+         {"0", 
+          RowBox[{"Cos", "[", "\[Theta]x", "]"}], 
+          RowBox[{"Sin", "[", "\[Theta]x", "]"}]},
+         {"0", 
+          RowBox[{"-", 
+           RowBox[{"Sin", "[", "\[Theta]x", "]"}]}], 
+          RowBox[{"Cos", "[", "\[Theta]x", "]"}]}
+        }], ")"}], ".", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Cos", "[", 
+         RowBox[{
+          FractionBox["t", "period"], "2", "\[Pi]"}], "]"}], ",", 
+        RowBox[{"Sin", "[", 
+         RowBox[{
+          FractionBox["t", "period"], "2", "\[Pi]"}], "]"}], ",", "0"}], 
+       "}"}]}], "orbitalRadius"}]}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.765199774953907*^9, 3.765199864252728*^9}, {
+  3.76519992045953*^9, 3.765200008305032*^9}, {3.765200043775976*^9, 
+  3.7652001028688717`*^9}, {3.765200491179174*^9, 3.765200517632029*^9}, {
+  3.765200549097658*^9, 3.7652005537446527`*^9}},
+ CellLabel->"In[35]:=",ExpressionUUID->"4b535e38-9f44-4259-bb99-3130458df995"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Show", "[", 
+    RowBox[{
+     RowBox[{"Graphics3D", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"Gray", ",", 
+         RowBox[{"Sphere", "[", 
+          RowBox[{
+           RowBox[{"Satellite", "[", 
+            RowBox[{
+            "t", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", "1"}], 
+            "]"}], ",", ".1"}], "]"}]}], "}"}], ",", 
+       RowBox[{"PlotRange", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "1.2"}], ",", "1.2"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "1.2"}], ",", "1.2"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "1.2"}], ",", "1.2"}], "}"}]}], "}"}]}]}], "]"}], 
+     ",", 
+     RowBox[{"ParametricPlot3D", "[", 
+      RowBox[{
+       RowBox[{"Satellite", "[", 
+        RowBox[{
+        "t", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", "1"}], 
+        "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", "0", ",", 
+         RowBox[{"2", "day"}]}], "}"}]}], "]"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", 
+     RowBox[{"2", "day"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Theta]x", ",", "0"}], "}"}], ",", 
+     RowBox[{"-", "\[Pi]"}], ",", "\[Pi]"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Theta]y", ",", "0"}], "}"}], ",", 
+     RowBox[{"-", "\[Pi]"}], ",", "\[Pi]"}], "}"}], ",", 
+   RowBox[{"ControlPlacement", "\[Rule]", "Left"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.765200113806902*^9, 3.765200298192981*^9}, {
+  3.765200526730618*^9, 3.765200535239147*^9}, {3.765200595421453*^9, 
+  3.765200598619426*^9}},
+ CellLabel->"In[39]:=",ExpressionUUID->"c97c3594-3867-4908-82bf-2ce3ddb669ad"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`t$$ = 0, $CellContext`\[Theta]x$$ = 
+    0, $CellContext`\[Theta]y$$ = 0, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`t$$], 0, 172800}, {{
+       Hold[$CellContext`\[Theta]x$$], 0}, -Pi, Pi}, {{
+       Hold[$CellContext`\[Theta]y$$], 0}, -Pi, Pi}}, Typeset`size$$ = {
+    360., {193., 198.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`t$27290$$ = 
+    0, $CellContext`\[Theta]x$27291$$ = 0, $CellContext`\[Theta]y$27292$$ = 
+    0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`t$$ = 0, $CellContext`\[Theta]x$$ = 
+        0, $CellContext`\[Theta]y$$ = 0}, "ControllerVariables" :> {
+        Hold[$CellContext`t$$, $CellContext`t$27290$$, 0], 
+        Hold[$CellContext`\[Theta]x$$, $CellContext`\[Theta]x$27291$$, 0], 
+        Hold[$CellContext`\[Theta]y$$, $CellContext`\[Theta]y$27292$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Show[
+        Graphics3D[{Gray, 
+          Sphere[
+           $CellContext`Satellite[$CellContext`t$$, $CellContext`\[Theta]x$$, \
+$CellContext`\[Theta]y$$, $CellContext`day, 1], 0.1]}, 
+         PlotRange -> {{-1.2, 1.2}, {-1.2, 1.2}, {-1.2, 1.2}}], 
+        ParametricPlot3D[
+         $CellContext`Satellite[$CellContext`t$$, $CellContext`\[Theta]x$$, \
+$CellContext`\[Theta]y$$, $CellContext`day, 1], {$CellContext`t$$, 0, 
+          2 $CellContext`day}]], 
+      "Specifications" :> {{$CellContext`t$$, 0, 
+         172800}, {{$CellContext`\[Theta]x$$, 0}, -Pi, 
+         Pi}, {{$CellContext`\[Theta]y$$, 0}, -Pi, Pi}}, 
+      "Options" :> {ControlPlacement -> Left}, "DefaultOptions" :> {}],
+     ImageSizeCache->{634., {223., 228.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.765200298721438*^9, 3.765200336125106*^9}, {
+   3.765200535619718*^9, 3.765200555295636*^9}, 3.765200598947769*^9},
+ CellLabel->"Out[39]=",ExpressionUUID->"11cc55c2-9564-4b7d-baae-b4785721b086"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Arbitrary Circular Orbit around Earth w/ Celestial Sphere", "Chapter",
+ CellChangeTimes->{{3.765200363045394*^9, 3.765200374748208*^9}, {
+   3.7652006214087343`*^9, 3.7652006257837763`*^9}, 
+   3.7652007460128307`*^9},ExpressionUUID->"0b0f4c7a-5ef9-4c69-90a1-\
+a05081630885"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"second", "=", "1"}], ";", 
+   RowBox[{"minute", "=", 
+    RowBox[{"60", " ", "second"}]}], ";", 
+   RowBox[{"hour", "=", 
+    RowBox[{"60", "minute"}]}], ";", 
+   RowBox[{"day", "=", 
+    RowBox[{"24", "hour"}]}], ";", 
+   RowBox[{"year", "=", 
+    RowBox[{"365.25", "day"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Earth", "[", "t_", "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"Satellite", "[", 
+     RowBox[{
+     "t_", ",", "\[Theta]x_", ",", "\[Theta]y_", ",", "period_", ",", 
+      "orbitalRadius_"}], "]"}], ":=", 
+    RowBox[{
+     RowBox[{"Earth", "[", "t", "]"}], "+", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", GridBox[{
+          {
+           RowBox[{"Cos", "[", "\[Theta]y", "]"}], "0", 
+           RowBox[{"Sin", "[", "\[Theta]y", "]"}]},
+          {"0", "1", "0"},
+          {
+           RowBox[{"-", 
+            RowBox[{"Sin", "[", "\[Theta]y", "]"}]}], "0", 
+           RowBox[{"Cos", "[", "\[Theta]y", "]"}]}
+         }], ")"}], ".", 
+       RowBox[{"(", GridBox[{
+          {"1", "0", "0"},
+          {"0", 
+           RowBox[{"Cos", "[", "\[Theta]x", "]"}], 
+           RowBox[{"Sin", "[", "\[Theta]x", "]"}]},
+          {"0", 
+           RowBox[{"-", 
+            RowBox[{"Sin", "[", "\[Theta]x", "]"}]}], 
+           RowBox[{"Cos", "[", "\[Theta]x", "]"}]}
+         }], ")"}], ".", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Cos", "[", 
+          RowBox[{
+           FractionBox["t", "period"], "2", "\[Pi]"}], "]"}], ",", 
+         RowBox[{"Sin", "[", 
+          RowBox[{
+           FractionBox["t", "period"], "2", "\[Pi]"}], "]"}], ",", "0"}], 
+        "}"}]}], "orbitalRadius"}]}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"satOrbitalRadius", "=", "3"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.765199774953907*^9, 3.765199864252728*^9}, {
+  3.76519992045953*^9, 3.765200008305032*^9}, {3.765200043775976*^9, 
+  3.7652001028688717`*^9}, {3.765200491179174*^9, 3.765200517632029*^9}, {
+  3.765200549097658*^9, 3.7652005537446527`*^9}, {3.7652007415419607`*^9, 
+  3.765200758699353*^9}},
+ CellLabel->"In[43]:=",ExpressionUUID->"d3958573-bad2-42ec-af19-9ec14dc24b49"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Show", "[", 
+    RowBox[{
+     RowBox[{"Graphics3D", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"Blue", ",", 
+         RowBox[{"Sphere", "[", 
+          RowBox[{
+           RowBox[{"Earth", "[", "t", "]"}], ",", ".3"}], "]"}], ",", "Cyan", 
+         ",", 
+         RowBox[{"Opacity", "[", ".5", "]"}], ",", 
+         RowBox[{"Sphere", "[", 
+          RowBox[{
+           RowBox[{"Earth", "[", "t", "]"}], ",", ".5"}], "]"}], ",", 
+         RowBox[{"Opacity", "[", "1", "]"}], ",", "Gray", ",", 
+         RowBox[{"Sphere", "[", 
+          RowBox[{
+           RowBox[{"Satellite", "[", 
+            RowBox[{
+            "t", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", 
+             "satOrbitalRadius"}], "]"}], ",", ".1"}], "]"}]}], "}"}], ",", 
+       RowBox[{"PlotRange", "\[Rule]", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "1.2"}], ",", "1.2"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "1.2"}], ",", "1.2"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "1.2"}], ",", "1.2"}], "}"}]}], "}"}], 
+         "satOrbitalRadius"}]}]}], "]"}], ",", 
+     RowBox[{"ParametricPlot3D", "[", 
+      RowBox[{
+       RowBox[{"Satellite", "[", 
+        RowBox[{
+        "t", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", 
+         "satOrbitalRadius"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", "0", ",", 
+         RowBox[{"2", "day"}]}], "}"}]}], "]"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", 
+     RowBox[{"2", "day"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Theta]x", ",", "0"}], "}"}], ",", 
+     RowBox[{"-", "\[Pi]"}], ",", "\[Pi]"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Theta]y", ",", "0"}], "}"}], ",", 
+     RowBox[{"-", "\[Pi]"}], ",", "\[Pi]"}], "}"}], ",", 
+   RowBox[{"ControlPlacement", "\[Rule]", "Left"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.765200113806902*^9, 3.765200298192981*^9}, {
+  3.765200526730618*^9, 3.765200535239147*^9}, {3.765200595421453*^9, 
+  3.765200598619426*^9}, {3.76520063945*^9, 3.765200729949012*^9}, {
+  3.765200766454463*^9, 3.7652008129460993`*^9}},
+ CellLabel->"In[48]:=",ExpressionUUID->"e83975ea-2c50-489a-bd7e-349b54993408"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`t$$ = 
+    0, $CellContext`\[Theta]x$$ = -0.22619467105846502`, \
+$CellContext`\[Theta]y$$ = 0, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`t$$], 0, 172800}, {{
+       Hold[$CellContext`\[Theta]x$$], 0}, -Pi, Pi}, {{
+       Hold[$CellContext`\[Theta]y$$], 0}, -Pi, Pi}}, Typeset`size$$ = {
+    360., {193., 198.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`t$28844$$ = 
+    0, $CellContext`\[Theta]x$28845$$ = 0, $CellContext`\[Theta]y$28846$$ = 
+    0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`t$$ = 0, $CellContext`\[Theta]x$$ = 
+        0, $CellContext`\[Theta]y$$ = 0}, "ControllerVariables" :> {
+        Hold[$CellContext`t$$, $CellContext`t$28844$$, 0], 
+        Hold[$CellContext`\[Theta]x$$, $CellContext`\[Theta]x$28845$$, 0], 
+        Hold[$CellContext`\[Theta]y$$, $CellContext`\[Theta]y$28846$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Show[
+        Graphics3D[{Blue, 
+          Sphere[
+           $CellContext`Earth[$CellContext`t$$], 0.3], Cyan, 
+          Opacity[0.5], 
+          Sphere[
+           $CellContext`Earth[$CellContext`t$$], 0.5], 
+          Opacity[1], Gray, 
+          Sphere[
+           $CellContext`Satellite[$CellContext`t$$, $CellContext`\[Theta]x$$, \
+$CellContext`\[Theta]y$$, $CellContext`day, $CellContext`satOrbitalRadius], 
+           0.1]}, PlotRange -> {{-1.2, 1.2}, {-1.2, 1.2}, {-1.2, 
+           1.2}} $CellContext`satOrbitalRadius], 
+        ParametricPlot3D[
+         $CellContext`Satellite[$CellContext`t$$, $CellContext`\[Theta]x$$, \
+$CellContext`\[Theta]y$$, $CellContext`day, $CellContext`satOrbitalRadius], \
+{$CellContext`t$$, 0, 2 $CellContext`day}]], 
+      "Specifications" :> {{$CellContext`t$$, 0, 
+         172800}, {{$CellContext`\[Theta]x$$, 0}, -Pi, 
+         Pi}, {{$CellContext`\[Theta]y$$, 0}, -Pi, Pi}}, 
+      "Options" :> {ControlPlacement -> Left}, "DefaultOptions" :> {}],
+     ImageSizeCache->{634., {223., 228.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.765200730246282*^9, {3.7652007916342573`*^9, 3.7652008132603817`*^9}},
+ CellLabel->"Out[48]=",ExpressionUUID->"524c7ccf-dc50-491d-aaa9-9f59976b0ab8"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Arbitrary Circular Orbit around Earth w/ Celestial Sphere and Sight Line\
+\>", "Chapter",
+ CellChangeTimes->{{3.765200363045394*^9, 3.765200374748208*^9}, {
+   3.7652006214087343`*^9, 3.7652006257837763`*^9}, 3.7652007460128307`*^9, {
+   3.7652008264014807`*^9, 
+   3.765200828940271*^9}},ExpressionUUID->"11cde05e-3f5a-4f7f-b19e-\
+a0a28f695525"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"second", "=", "1"}], ";", 
+   RowBox[{"minute", "=", 
+    RowBox[{"60", " ", "second"}]}], ";", 
+   RowBox[{"hour", "=", 
+    RowBox[{"60", "minute"}]}], ";", 
+   RowBox[{"day", "=", 
+    RowBox[{"24", "hour"}]}], ";", 
+   RowBox[{"year", "=", 
+    RowBox[{"365.25", "day"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Earth", "[", "t_", "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"Satellite", "[", 
+     RowBox[{
+     "t_", ",", "\[Theta]x_", ",", "\[Theta]y_", ",", "period_", ",", 
+      "orbitalRadius_"}], "]"}], ":=", 
+    RowBox[{
+     RowBox[{"Earth", "[", "t", "]"}], "+", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", GridBox[{
+          {
+           RowBox[{"Cos", "[", "\[Theta]y", "]"}], "0", 
+           RowBox[{"Sin", "[", "\[Theta]y", "]"}]},
+          {"0", "1", "0"},
+          {
+           RowBox[{"-", 
+            RowBox[{"Sin", "[", "\[Theta]y", "]"}]}], "0", 
+           RowBox[{"Cos", "[", "\[Theta]y", "]"}]}
+         }], ")"}], ".", 
+       RowBox[{"(", GridBox[{
+          {"1", "0", "0"},
+          {"0", 
+           RowBox[{"Cos", "[", "\[Theta]x", "]"}], 
+           RowBox[{"Sin", "[", "\[Theta]x", "]"}]},
+          {"0", 
+           RowBox[{"-", 
+            RowBox[{"Sin", "[", "\[Theta]x", "]"}]}], 
+           RowBox[{"Cos", "[", "\[Theta]x", "]"}]}
+         }], ")"}], ".", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Cos", "[", 
+          RowBox[{
+           FractionBox["t", "period"], "2", "\[Pi]"}], "]"}], ",", 
+         RowBox[{"Sin", "[", 
+          RowBox[{
+           FractionBox["t", "period"], "2", "\[Pi]"}], "]"}], ",", "0"}], 
+        "}"}]}], "orbitalRadius"}]}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"satOrbitalRadius", "=", "3"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.765199774953907*^9, 3.765199864252728*^9}, {
+  3.76519992045953*^9, 3.765200008305032*^9}, {3.765200043775976*^9, 
+  3.7652001028688717`*^9}, {3.765200491179174*^9, 3.765200517632029*^9}, {
+  3.765200549097658*^9, 3.7652005537446527`*^9}, {3.7652007415419607`*^9, 
+  3.765200758699353*^9}},
+ CellLabel->"In[43]:=",ExpressionUUID->"b6c63a80-a154-47e3-867e-d68857ce6d86"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Show", "[", 
+    RowBox[{
+     RowBox[{"Graphics3D", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"Blue", ",", 
+         RowBox[{"Sphere", "[", 
+          RowBox[{
+           RowBox[{"Earth", "[", "t", "]"}], ",", ".3"}], "]"}], ",", "Cyan", 
+         ",", 
+         RowBox[{"Opacity", "[", ".5", "]"}], ",", 
+         RowBox[{"Sphere", "[", 
+          RowBox[{
+           RowBox[{"Earth", "[", "t", "]"}], ",", ".5"}], "]"}], ",", 
+         RowBox[{"Opacity", "[", "1", "]"}], ",", "Gray", ",", 
+         RowBox[{"Sphere", "[", 
+          RowBox[{
+           RowBox[{"Satellite", "[", 
+            RowBox[{
+            "t", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", 
+             "satOrbitalRadius"}], "]"}], ",", ".1"}], "]"}]}], "}"}], ",", 
+       RowBox[{"PlotRange", "\[Rule]", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "1.2"}], ",", "1.2"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "1.2"}], ",", "1.2"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "1.2"}], ",", "1.2"}], "}"}]}], "}"}], 
+         "satOrbitalRadius"}]}]}], "]"}], ",", 
+     RowBox[{"ParametricPlot3D", "[", 
+      RowBox[{
+       RowBox[{"Satellite", "[", 
+        RowBox[{
+        "t", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", 
+         "satOrbitalRadius"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", "0", ",", 
+         RowBox[{"2", "day"}]}], "}"}]}], "]"}], ",", 
+     RowBox[{"ParametricPlot3D", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"Earth", "[", "t", "]"}], "s"}], "+", 
+        RowBox[{
+         RowBox[{"Satellite", "[", 
+          RowBox[{
+          "t", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", 
+           "satOrbitalRadius"}], "]"}], 
+         RowBox[{"(", 
+          RowBox[{"1", "-", "s"}], ")"}]}]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"s", ",", "0", ",", "1"}], "}"}], ",", 
+       RowBox[{"PlotStyle", "\[Rule]", "Black"}]}], "]"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", 
+     RowBox[{"2", "day"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Theta]x", ",", "0"}], "}"}], ",", 
+     RowBox[{"-", "\[Pi]"}], ",", "\[Pi]"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Theta]y", ",", "0"}], "}"}], ",", 
+     RowBox[{"-", "\[Pi]"}], ",", "\[Pi]"}], "}"}], ",", 
+   RowBox[{"ControlPlacement", "\[Rule]", "Left"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.765200113806902*^9, 3.765200298192981*^9}, {
+  3.765200526730618*^9, 3.765200535239147*^9}, {3.765200595421453*^9, 
+  3.765200598619426*^9}, {3.76520063945*^9, 3.765200729949012*^9}, {
+  3.765200766454463*^9, 3.7652008930316057`*^9}},
+ CellLabel->"In[50]:=",ExpressionUUID->"fdecb0a1-e23a-407a-bcd4-e00a85e30c6d"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`t$$ = 
+    82600., $CellContext`\[Theta]x$$ = -0.7414158662471912, $CellContext`\
+\[Theta]y$$ = 0.9424777960769379, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`t$$], 0, 172800}, {{
+       Hold[$CellContext`\[Theta]x$$], 0}, -Pi, Pi}, {{
+       Hold[$CellContext`\[Theta]y$$], 0}, -Pi, Pi}}, Typeset`size$$ = {
+    360., {193., 198.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`t$29875$$ = 
+    0, $CellContext`\[Theta]x$29876$$ = 0, $CellContext`\[Theta]y$29877$$ = 
+    0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`t$$ = 0, $CellContext`\[Theta]x$$ = 
+        0, $CellContext`\[Theta]y$$ = 0}, "ControllerVariables" :> {
+        Hold[$CellContext`t$$, $CellContext`t$29875$$, 0], 
+        Hold[$CellContext`\[Theta]x$$, $CellContext`\[Theta]x$29876$$, 0], 
+        Hold[$CellContext`\[Theta]y$$, $CellContext`\[Theta]y$29877$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Show[
+        Graphics3D[{Blue, 
+          Sphere[
+           $CellContext`Earth[$CellContext`t$$], 0.3], Cyan, 
+          Opacity[0.5], 
+          Sphere[
+           $CellContext`Earth[$CellContext`t$$], 0.5], 
+          Opacity[1], Gray, 
+          Sphere[
+           $CellContext`Satellite[$CellContext`t$$, $CellContext`\[Theta]x$$, \
+$CellContext`\[Theta]y$$, $CellContext`day, $CellContext`satOrbitalRadius], 
+           0.1]}, PlotRange -> {{-1.2, 1.2}, {-1.2, 1.2}, {-1.2, 
+           1.2}} $CellContext`satOrbitalRadius], 
+        ParametricPlot3D[
+         $CellContext`Satellite[$CellContext`t$$, $CellContext`\[Theta]x$$, \
+$CellContext`\[Theta]y$$, $CellContext`day, $CellContext`satOrbitalRadius], \
+{$CellContext`t$$, 0, 2 $CellContext`day}], 
+        ParametricPlot3D[$CellContext`Earth[$CellContext`t$$] $CellContext`s + \
+$CellContext`Satellite[$CellContext`t$$, $CellContext`\[Theta]x$$, \
+$CellContext`\[Theta]y$$, $CellContext`day, $CellContext`satOrbitalRadius] (
+           1 - $CellContext`s), {$CellContext`s, 0, 1}, PlotStyle -> Black]], 
+      "Specifications" :> {{$CellContext`t$$, 0, 
+         172800}, {{$CellContext`\[Theta]x$$, 0}, -Pi, 
+         Pi}, {{$CellContext`\[Theta]y$$, 0}, -Pi, Pi}}, 
+      "Options" :> {ControlPlacement -> Left}, "DefaultOptions" :> {}],
+     ImageSizeCache->{634., {223., 228.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.7652008905231333`*^9, 3.7652008933061647`*^9}},
+ CellLabel->"Out[50]=",ExpressionUUID->"bbd0efc5-1040-4d90-bf05-476efb9d6c90"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Satellite Orbit w/ Side-by-Side Celestial Sphere Projection", "Chapter",
+ CellChangeTimes->{{3.765200363045394*^9, 3.765200374748208*^9}, {
+   3.7652006214087343`*^9, 3.7652006257837763`*^9}, 3.7652007460128307`*^9, {
+   3.7652008264014807`*^9, 3.765200828940271*^9}, {3.765200943069355*^9, 
+   3.765200954892178*^9}},ExpressionUUID->"1a45f9ba-9bbf-4601-b3ec-\
+058be0b4c21a"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"second", "=", "1"}], ";", 
+   RowBox[{"minute", "=", 
+    RowBox[{"60", " ", "second"}]}], ";", 
+   RowBox[{"hour", "=", 
+    RowBox[{"60", "minute"}]}], ";", 
+   RowBox[{"day", "=", 
+    RowBox[{"24", "hour"}]}], ";", 
+   RowBox[{"year", "=", 
+    RowBox[{"365.25", "day"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Earth", "[", "t_", "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"Satellite", "[", 
+     RowBox[{
+     "t_", ",", "\[Theta]x_", ",", "\[Theta]y_", ",", "period_", ",", 
+      "orbitalRadius_"}], "]"}], ":=", 
+    RowBox[{
+     RowBox[{"Earth", "[", "t", "]"}], "+", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", GridBox[{
+          {
+           RowBox[{"Cos", "[", "\[Theta]y", "]"}], "0", 
+           RowBox[{"Sin", "[", "\[Theta]y", "]"}]},
+          {"0", "1", "0"},
+          {
+           RowBox[{"-", 
+            RowBox[{"Sin", "[", "\[Theta]y", "]"}]}], "0", 
+           RowBox[{"Cos", "[", "\[Theta]y", "]"}]}
+         }], ")"}], ".", 
+       RowBox[{"(", GridBox[{
+          {"1", "0", "0"},
+          {"0", 
+           RowBox[{"Cos", "[", "\[Theta]x", "]"}], 
+           RowBox[{"Sin", "[", "\[Theta]x", "]"}]},
+          {"0", 
+           RowBox[{"-", 
+            RowBox[{"Sin", "[", "\[Theta]x", "]"}]}], 
+           RowBox[{"Cos", "[", "\[Theta]x", "]"}]}
+         }], ")"}], ".", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Cos", "[", 
+          RowBox[{
+           FractionBox["t", "period"], "2", "\[Pi]"}], "]"}], ",", 
+         RowBox[{"Sin", "[", 
+          RowBox[{
+           FractionBox["t", "period"], "2", "\[Pi]"}], "]"}], ",", "0"}], 
+        "}"}]}], "orbitalRadius"}]}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"satOrbitalRadius", "=", "3"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.765199774953907*^9, 3.765199864252728*^9}, {
+  3.76519992045953*^9, 3.765200008305032*^9}, {3.765200043775976*^9, 
+  3.7652001028688717`*^9}, {3.765200491179174*^9, 3.765200517632029*^9}, {
+  3.765200549097658*^9, 3.7652005537446527`*^9}, {3.7652007415419607`*^9, 
+  3.765200758699353*^9}},
+ CellLabel->"In[43]:=",ExpressionUUID->"8bd7eb1d-56d7-442d-8b74-8a79e4d27455"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Row", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Show", "[", 
+       RowBox[{
+        RowBox[{"Graphics3D", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"Blue", ",", 
+            RowBox[{"Sphere", "[", 
+             RowBox[{
+              RowBox[{"Earth", "[", "t", "]"}], ",", ".3"}], "]"}], ",", 
+            "Cyan", ",", 
+            RowBox[{"Opacity", "[", ".5", "]"}], ",", 
+            RowBox[{"Sphere", "[", 
+             RowBox[{
+              RowBox[{"Earth", "[", "t", "]"}], ",", ".5"}], "]"}], ",", 
+            RowBox[{"Opacity", "[", "1", "]"}], ",", "Gray", ",", 
+            RowBox[{"Sphere", "[", 
+             RowBox[{
+              RowBox[{"Satellite", "[", 
+               RowBox[{
+               "t", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", 
+                "satOrbitalRadius"}], "]"}], ",", ".1"}], "]"}]}], "}"}], ",", 
+          RowBox[{"PlotRange", "\[Rule]", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "1.2"}], ",", "1.2"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "1.2"}], ",", "1.2"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "1.2"}], ",", "1.2"}], "}"}]}], "}"}], 
+            "satOrbitalRadius"}]}]}], "]"}], ",", 
+        RowBox[{"ParametricPlot3D", "[", 
+         RowBox[{
+          RowBox[{"Satellite", "[", 
+           RowBox[{
+           "t", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", 
+            "satOrbitalRadius"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"t", ",", "0", ",", 
+            RowBox[{"2", "day"}]}], "}"}]}], "]"}], ",", 
+        RowBox[{"ParametricPlot3D", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"Earth", "[", "t", "]"}], "s"}], "+", 
+           RowBox[{
+            RowBox[{"Satellite", "[", 
+             RowBox[{
+             "t", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", 
+              "satOrbitalRadius"}], "]"}], 
+            RowBox[{"(", 
+             RowBox[{"1", "-", "s"}], ")"}]}]}], ",", 
+          RowBox[{"{", 
+           RowBox[{"s", ",", "0", ",", "1"}], "}"}], ",", 
+          RowBox[{"PlotStyle", "\[Rule]", "Black"}]}], "]"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "500"}]}], "]"}], ",", 
+      RowBox[{"Show", "[", 
+       RowBox[{
+        RowBox[{"Graphics3D", "[", 
+         RowBox[{"{", 
+          RowBox[{"Cyan", ",", 
+           RowBox[{"Opacity", "[", ".5", "]"}], ",", 
+           RowBox[{"Sphere", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"0", ",", "0", ",", "0"}], "}"}], ",", "1"}], "]"}]}], 
+          "}"}], "]"}], ",", 
+        RowBox[{"ParametricPlot3D", "[", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"Satellite", "[", 
+            RowBox[{
+            "s", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", 
+             "satOrbitalRadius"}], "]"}], 
+           RowBox[{"Norm", "[", 
+            RowBox[{"Satellite", "[", 
+             RowBox[{
+             "s", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", 
+              "satOrbitalRadius"}], "]"}], "]"}]], ",", 
+          RowBox[{"{", 
+           RowBox[{"s", ",", "0", ",", "day"}], "}"}], ",", 
+          RowBox[{"PlotStyle", "\[Rule]", "Black"}]}], "]"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "500"}]}], "]"}]}], "}"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", 
+     RowBox[{"2", "day"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Theta]x", ",", "0"}], "}"}], ",", 
+     RowBox[{"-", "\[Pi]"}], ",", "\[Pi]"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Theta]y", ",", "0"}], "}"}], ",", 
+     RowBox[{"-", "\[Pi]"}], ",", "\[Pi]"}], "}"}], ",", 
+   RowBox[{"ControlPlacement", "\[Rule]", "Left"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.765200113806902*^9, 3.765200298192981*^9}, {
+  3.765200526730618*^9, 3.765200535239147*^9}, {3.765200595421453*^9, 
+  3.765200598619426*^9}, {3.76520063945*^9, 3.765200729949012*^9}, {
+  3.765200766454463*^9, 3.7652008930316057`*^9}, {3.765200960087661*^9, 
+  3.7652010134036283`*^9}, {3.7652010525407476`*^9, 3.76520118228579*^9}, {
+  3.76520129528548*^9, 3.765201337184742*^9}},
+ CellLabel->"In[64]:=",ExpressionUUID->"d3551a38-9f46-43fe-9717-2b984a2fd3bf"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`t$$ = 
+    0, $CellContext`\[Theta]x$$ = -0.03769911184307739, \
+$CellContext`\[Theta]y$$ = -0.6534512719466767, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`t$$], 0, 172800}, {{
+       Hold[$CellContext`\[Theta]x$$], 0}, -Pi, Pi}, {{
+       Hold[$CellContext`\[Theta]y$$], 0}, -Pi, Pi}}, Typeset`size$$ = {
+    1000., {269., 274.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`t$34956$$ = 
+    0, $CellContext`\[Theta]x$34957$$ = 0, $CellContext`\[Theta]y$34958$$ = 
+    0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`t$$ = 0, $CellContext`\[Theta]x$$ = 
+        0, $CellContext`\[Theta]y$$ = 0}, "ControllerVariables" :> {
+        Hold[$CellContext`t$$, $CellContext`t$34956$$, 0], 
+        Hold[$CellContext`\[Theta]x$$, $CellContext`\[Theta]x$34957$$, 0], 
+        Hold[$CellContext`\[Theta]y$$, $CellContext`\[Theta]y$34958$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Row[{
+         Show[
+          Graphics3D[{Blue, 
+            Sphere[
+             $CellContext`Earth[$CellContext`t$$], 0.3], Cyan, 
+            Opacity[0.5], 
+            Sphere[
+             $CellContext`Earth[$CellContext`t$$], 0.5], 
+            Opacity[1], Gray, 
+            Sphere[
+             $CellContext`Satellite[$CellContext`t$$, \
+$CellContext`\[Theta]x$$, $CellContext`\[Theta]y$$, $CellContext`day, \
+$CellContext`satOrbitalRadius], 0.1]}, 
+           PlotRange -> {{-1.2, 1.2}, {-1.2, 1.2}, {-1.2, 
+             1.2}} $CellContext`satOrbitalRadius], 
+          ParametricPlot3D[
+           $CellContext`Satellite[$CellContext`t$$, $CellContext`\[Theta]x$$, \
+$CellContext`\[Theta]y$$, $CellContext`day, $CellContext`satOrbitalRadius], \
+{$CellContext`t$$, 0, 2 $CellContext`day}], 
+          
+          ParametricPlot3D[$CellContext`Earth[$CellContext`t$$] \
+$CellContext`s + $CellContext`Satellite[$CellContext`t$$, $CellContext`\
+\[Theta]x$$, $CellContext`\[Theta]y$$, $CellContext`day, \
+$CellContext`satOrbitalRadius] (1 - $CellContext`s), {$CellContext`s, 0, 1}, 
+           PlotStyle -> Black], ImageSize -> 500], 
+         Show[
+          Graphics3D[{Cyan, 
+            Opacity[0.5], 
+            Sphere[{0, 0, 0}, 1]}], 
+          
+          ParametricPlot3D[$CellContext`Satellite[$CellContext`s, \
+$CellContext`\[Theta]x$$, $CellContext`\[Theta]y$$, $CellContext`day, \
+$CellContext`satOrbitalRadius]/Norm[
+            $CellContext`Satellite[$CellContext`s, $CellContext`\[Theta]x$$, \
+$CellContext`\[Theta]y$$, $CellContext`day, $CellContext`satOrbitalRadius]], \
+{$CellContext`s, 0, $CellContext`day}, PlotStyle -> Black], ImageSize -> 
+          500]}], "Specifications" :> {{$CellContext`t$$, 0, 
+         172800}, {{$CellContext`\[Theta]x$$, 0}, -Pi, 
+         Pi}, {{$CellContext`\[Theta]y$$, 0}, -Pi, Pi}}, 
+      "Options" :> {ControlPlacement -> Left}, "DefaultOptions" :> {}],
+     ImageSizeCache->{1274., {299., 304.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.7652008905231333`*^9, 3.7652008933061647`*^9}, {
+  3.7652009928021507`*^9, 3.765201013736162*^9}, {3.765201119661463*^9, 
+  3.7652011829824123`*^9}, {3.765201296269806*^9, 3.7652013375878572`*^9}},
+ CellLabel->"Out[64]=",ExpressionUUID->"07658307-fe8f-4175-aae4-af4eba45ea20"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Satellite Orbit w/ Side-by-Side Celestial Sphere Projection w/ Earth Rotation\
+\
+\>", "Chapter",
+ CellChangeTimes->{{3.765200363045394*^9, 3.765200374748208*^9}, {
+   3.7652006214087343`*^9, 3.7652006257837763`*^9}, 3.7652007460128307`*^9, {
+   3.7652008264014807`*^9, 3.765200828940271*^9}, {3.765200943069355*^9, 
+   3.765200954892178*^9}, {3.765201476227057*^9, 
+   3.765201479882131*^9}},ExpressionUUID->"eeb04090-b2fd-4a89-bb2f-\
+bebb8fe0ae70"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"second", "=", "1"}], ";", 
+   RowBox[{"minute", "=", 
+    RowBox[{"60", " ", "second"}]}], ";", 
+   RowBox[{"hour", "=", 
+    RowBox[{"60", "minute"}]}], ";", 
+   RowBox[{"day", "=", 
+    RowBox[{"24", "hour"}]}], ";", 
+   RowBox[{"year", "=", 
+    RowBox[{"365.25", "day"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Earth", "[", "t_", "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"Satellite", "[", 
+     RowBox[{
+     "t_", ",", "\[Theta]x_", ",", "\[Theta]y_", ",", "period_", ",", 
+      "orbitalRadius_"}], "]"}], ":=", 
+    RowBox[{
+     RowBox[{"Earth", "[", "t", "]"}], "+", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", GridBox[{
+          {
+           RowBox[{"Cos", "[", "\[Theta]y", "]"}], "0", 
+           RowBox[{"Sin", "[", "\[Theta]y", "]"}]},
+          {"0", "1", "0"},
+          {
+           RowBox[{"-", 
+            RowBox[{"Sin", "[", "\[Theta]y", "]"}]}], "0", 
+           RowBox[{"Cos", "[", "\[Theta]y", "]"}]}
+         }], ")"}], ".", 
+       RowBox[{"(", GridBox[{
+          {"1", "0", "0"},
+          {"0", 
+           RowBox[{"Cos", "[", "\[Theta]x", "]"}], 
+           RowBox[{"Sin", "[", "\[Theta]x", "]"}]},
+          {"0", 
+           RowBox[{"-", 
+            RowBox[{"Sin", "[", "\[Theta]x", "]"}]}], 
+           RowBox[{"Cos", "[", "\[Theta]x", "]"}]}
+         }], ")"}], ".", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Cos", "[", 
+          RowBox[{
+           FractionBox["t", "period"], "2", "\[Pi]"}], "]"}], ",", 
+         RowBox[{"Sin", "[", 
+          RowBox[{
+           FractionBox["t", "period"], "2", "\[Pi]"}], "]"}], ",", "0"}], 
+        "}"}]}], "orbitalRadius"}]}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"satOrbitalRadius", "=", "3"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.765199774953907*^9, 3.765199864252728*^9}, {
+  3.76519992045953*^9, 3.765200008305032*^9}, {3.765200043775976*^9, 
+  3.7652001028688717`*^9}, {3.765200491179174*^9, 3.765200517632029*^9}, {
+  3.765200549097658*^9, 3.7652005537446527`*^9}, {3.7652007415419607`*^9, 
+  3.765200758699353*^9}},
+ CellLabel->"In[43]:=",ExpressionUUID->"22e11cac-8042-4fdc-a68c-d9189b46a720"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Row", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Show", "[", 
+       RowBox[{
+        RowBox[{"Graphics3D", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"Blue", ",", 
+            RowBox[{"Sphere", "[", 
+             RowBox[{
+              RowBox[{"Earth", "[", "t", "]"}], ",", ".3"}], "]"}], ",", 
+            "Cyan", ",", 
+            RowBox[{"Opacity", "[", ".5", "]"}], ",", 
+            RowBox[{"Sphere", "[", 
+             RowBox[{
+              RowBox[{"Earth", "[", "t", "]"}], ",", ".5"}], "]"}], ",", 
+            RowBox[{"Opacity", "[", "1", "]"}], ",", "Gray", ",", 
+            RowBox[{"Sphere", "[", 
+             RowBox[{
+              RowBox[{"Satellite", "[", 
+               RowBox[{
+               "t", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", 
+                "orbitalRadius"}], "]"}], ",", ".1"}], "]"}]}], "}"}], ",", 
+          RowBox[{"PlotRange", "\[Rule]", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "1.2"}], ",", "1.2"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "1.2"}], ",", "1.2"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "1.2"}], ",", "1.2"}], "}"}]}], "}"}], 
+            "orbitalRadius"}]}]}], "]"}], ",", 
+        RowBox[{"ParametricPlot3D", "[", 
+         RowBox[{
+          RowBox[{"Satellite", "[", 
+           RowBox[{
+           "t", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", 
+            "orbitalRadius"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"t", ",", "0", ",", 
+            RowBox[{"2", "day"}]}], "}"}]}], "]"}], ",", 
+        RowBox[{"ParametricPlot3D", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"Earth", "[", "t", "]"}], "s"}], "+", 
+           RowBox[{
+            RowBox[{"Satellite", "[", 
+             RowBox[{
+             "t", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", 
+              "orbitalRadius"}], "]"}], 
+            RowBox[{"(", 
+             RowBox[{"1", "-", "s"}], ")"}]}]}], ",", 
+          RowBox[{"{", 
+           RowBox[{"s", ",", "0", ",", "1"}], "}"}], ",", 
+          RowBox[{"PlotStyle", "\[Rule]", "Black"}]}], "]"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "500"}]}], "]"}], ",", 
+      RowBox[{"Show", "[", 
+       RowBox[{
+        RowBox[{"Graphics3D", "[", 
+         RowBox[{"{", 
+          RowBox[{"Cyan", ",", 
+           RowBox[{"Opacity", "[", ".5", "]"}], ",", 
+           RowBox[{"Sphere", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"0", ",", "0", ",", "0"}], "}"}], ",", "1"}], "]"}], 
+           ",", "Gray", ",", 
+           RowBox[{"Opacity", "[", "1", "]"}], ",", 
+           RowBox[{"Sphere", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"(", GridBox[{
+                 {
+                  RowBox[{"Cos", "[", 
+                   RowBox[{
+                    FractionBox["t", "day"], "2", "\[Pi]"}], "]"}], 
+                  RowBox[{"Sin", "[", 
+                   RowBox[{
+                    FractionBox["t", "day"], "2", "\[Pi]"}], "]"}], "0"},
+                 {
+                  RowBox[{"-", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{
+                    FractionBox["t", "day"], "2", "\[Pi]"}], "]"}]}], 
+                  RowBox[{"Cos", "[", 
+                   RowBox[{
+                    FractionBox["t", "day"], "2", "\[Pi]"}], "]"}], "0"},
+                 {"0", "0", "1"}
+                }], ")"}], ".", 
+              FractionBox[
+               RowBox[{"Satellite", "[", 
+                RowBox[{
+                "t", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", 
+                 "orbitalRadius"}], "]"}], 
+               RowBox[{"Norm", "[", 
+                RowBox[{"Satellite", "[", 
+                 RowBox[{
+                 "t", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", 
+                  "orbitalRadius"}], "]"}], "]"}]]}], ",", ".1"}], "]"}]}], 
+          "}"}], "]"}], ",", 
+        RowBox[{"ParametricPlot3D", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", GridBox[{
+              {
+               RowBox[{"Cos", "[", 
+                RowBox[{
+                 FractionBox["s", "day"], "2", "\[Pi]"}], "]"}], 
+               RowBox[{"Sin", "[", 
+                RowBox[{
+                 FractionBox["s", "day"], "2", "\[Pi]"}], "]"}], "0"},
+              {
+               RowBox[{"-", 
+                RowBox[{"Sin", "[", 
+                 RowBox[{
+                  FractionBox["s", "day"], "2", "\[Pi]"}], "]"}]}], 
+               RowBox[{"Cos", "[", 
+                RowBox[{
+                 FractionBox["s", "day"], "2", "\[Pi]"}], "]"}], "0"},
+              {"0", "0", "1"}
+             }], ")"}], ".", 
+           FractionBox[
+            RowBox[{"Satellite", "[", 
+             RowBox[{
+             "s", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", 
+              "orbitalRadius"}], "]"}], 
+            RowBox[{"Norm", "[", 
+             RowBox[{"Satellite", "[", 
+              RowBox[{
+              "s", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", 
+               "orbitalRadius"}], "]"}], "]"}]]}], ",", 
+          RowBox[{"{", 
+           RowBox[{"s", ",", "0", ",", "day"}], "}"}], ",", 
+          RowBox[{"PlotStyle", "\[Rule]", "Black"}]}], "]"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "500"}]}], "]"}]}], "}"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", 
+     RowBox[{"2", "day"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Theta]x", ",", "0"}], "}"}], ",", 
+     RowBox[{"-", "\[Pi]"}], ",", "\[Pi]"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Theta]y", ",", "0"}], "}"}], ",", 
+     RowBox[{"-", "\[Pi]"}], ",", "\[Pi]"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"orbitalRadius", ",", "1", ",", "\"\<orbit\>\""}], "}"}], ",", 
+     ".5", ",", "20"}], "}"}], ",", 
+   RowBox[{"ControlPlacement", "\[Rule]", "Left"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.765200113806902*^9, 3.765200298192981*^9}, {
+  3.765200526730618*^9, 3.765200535239147*^9}, {3.765200595421453*^9, 
+  3.765200598619426*^9}, {3.76520063945*^9, 3.765200729949012*^9}, {
+  3.765200766454463*^9, 3.7652008930316057`*^9}, {3.765200960087661*^9, 
+  3.7652010134036283`*^9}, {3.7652010525407476`*^9, 3.76520118228579*^9}, {
+  3.76520129528548*^9, 3.765201337184742*^9}, {3.765201487413093*^9, 
+  3.765201574247664*^9}, {3.765201732204586*^9, 3.7652017410500927`*^9}, {
+  3.7652018062898197`*^9, 3.76520185577078*^9}, {3.765201890752441*^9, 
+  3.76520189631111*^9}, {3.765201965381956*^9, 3.765201997761106*^9}},
+ CellLabel->"In[71]:=",ExpressionUUID->"2039576b-4789-4f15-b5dc-68f4dca2b45a"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`orbitalRadius$$ = 2.64, $CellContext`t$$ = 
+    72800., $CellContext`\[Theta]x$$ = 
+    1.0304423903774522`, $CellContext`\[Theta]y$$ = 0, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`t$$], 0, 172800}, {{
+       Hold[$CellContext`\[Theta]x$$], 0}, -Pi, Pi}, {{
+       Hold[$CellContext`\[Theta]y$$], 0}, -Pi, Pi}, {{
+       Hold[$CellContext`orbitalRadius$$], 1, "orbit"}, 0.5, 20}}, 
+    Typeset`size$$ = {1000., {269., 274.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`t$45997$$ = 0, $CellContext`\[Theta]x$45998$$ = 
+    0, $CellContext`\[Theta]y$45999$$ = 
+    0, $CellContext`orbitalRadius$46000$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`orbitalRadius$$ = 1, $CellContext`t$$ = 
+        0, $CellContext`\[Theta]x$$ = 0, $CellContext`\[Theta]y$$ = 0}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`t$$, $CellContext`t$45997$$, 0], 
+        Hold[$CellContext`\[Theta]x$$, $CellContext`\[Theta]x$45998$$, 0], 
+        Hold[$CellContext`\[Theta]y$$, $CellContext`\[Theta]y$45999$$, 0], 
+        Hold[$CellContext`orbitalRadius$$, $CellContext`orbitalRadius$46000$$,
+          0]}, "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Row[{
+         Show[
+          Graphics3D[{Blue, 
+            Sphere[
+             $CellContext`Earth[$CellContext`t$$], 0.3], Cyan, 
+            Opacity[0.5], 
+            Sphere[
+             $CellContext`Earth[$CellContext`t$$], 0.5], 
+            Opacity[1], Gray, 
+            Sphere[
+             $CellContext`Satellite[$CellContext`t$$, \
+$CellContext`\[Theta]x$$, $CellContext`\[Theta]y$$, $CellContext`day, \
+$CellContext`orbitalRadius$$], 0.1]}, 
+           PlotRange -> {{-1.2, 1.2}, {-1.2, 1.2}, {-1.2, 
+             1.2}} $CellContext`orbitalRadius$$], 
+          ParametricPlot3D[
+           $CellContext`Satellite[$CellContext`t$$, $CellContext`\[Theta]x$$, \
+$CellContext`\[Theta]y$$, $CellContext`day, $CellContext`orbitalRadius$$], \
+{$CellContext`t$$, 0, 2 $CellContext`day}], 
+          
+          ParametricPlot3D[$CellContext`Earth[$CellContext`t$$] \
+$CellContext`s + $CellContext`Satellite[$CellContext`t$$, $CellContext`\
+\[Theta]x$$, $CellContext`\[Theta]y$$, $CellContext`day, \
+$CellContext`orbitalRadius$$] (1 - $CellContext`s), {$CellContext`s, 0, 1}, 
+           PlotStyle -> Black], ImageSize -> 500], 
+         Show[
+          Graphics3D[{Cyan, 
+            Opacity[0.5], 
+            Sphere[{0, 0, 0}, 1], Gray, 
+            Opacity[1], 
+            Sphere[
+             Dot[{{
+                Cos[($CellContext`t$$/$CellContext`day) 2 Pi], 
+                Sin[($CellContext`t$$/$CellContext`day) 2 Pi], 0}, {-
+                Sin[($CellContext`t$$/$CellContext`day) 2 Pi], 
+                Cos[($CellContext`t$$/$CellContext`day) 2 Pi], 0}, {0, 0, 
+               1}}, $CellContext`Satellite[$CellContext`t$$, $CellContext`\
+\[Theta]x$$, $CellContext`\[Theta]y$$, $CellContext`day, \
+$CellContext`orbitalRadius$$]/Norm[
+               $CellContext`Satellite[$CellContext`t$$, \
+$CellContext`\[Theta]x$$, $CellContext`\[Theta]y$$, $CellContext`day, \
+$CellContext`orbitalRadius$$]]], 0.1]}], 
+          ParametricPlot3D[
+           Dot[{{
+              Cos[($CellContext`s/$CellContext`day) 2 Pi], 
+              Sin[($CellContext`s/$CellContext`day) 2 Pi], 0}, {-
+              Sin[($CellContext`s/$CellContext`day) 2 Pi], 
+              Cos[($CellContext`s/$CellContext`day) 2 Pi], 0}, {0, 0, 
+             
+             1}}, $CellContext`Satellite[$CellContext`s, \
+$CellContext`\[Theta]x$$, $CellContext`\[Theta]y$$, $CellContext`day, \
+$CellContext`orbitalRadius$$]/Norm[
+             $CellContext`Satellite[$CellContext`s, $CellContext`\[Theta]x$$, \
+$CellContext`\[Theta]y$$, $CellContext`day, $CellContext`orbitalRadius$$]]], \
+{$CellContext`s, 0, $CellContext`day}, PlotStyle -> Black], ImageSize -> 
+          500]}], "Specifications" :> {{$CellContext`t$$, 0, 
+         172800}, {{$CellContext`\[Theta]x$$, 0}, -Pi, 
+         Pi}, {{$CellContext`\[Theta]y$$, 0}, -Pi, 
+         Pi}, {{$CellContext`orbitalRadius$$, 1, "orbit"}, 0.5, 20}}, 
+      "Options" :> {ControlPlacement -> Left}, "DefaultOptions" :> {}],
+     ImageSizeCache->{1284., {299., 304.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.7652008905231333`*^9, 3.7652008933061647`*^9}, {
+   3.7652009928021507`*^9, 3.765201013736162*^9}, {3.765201119661463*^9, 
+   3.7652011829824123`*^9}, {3.765201296269806*^9, 3.7652013375878572`*^9}, {
+   3.765201556620016*^9, 3.765201574632406*^9}, 3.765201605816749*^9, 
+   3.765201741704482*^9, 3.765201858587812*^9, 3.765201901110276*^9, 
+   3.7652019980996103`*^9},
+ CellLabel->"Out[71]=",ExpressionUUID->"0871eab6-807f-46ad-9b39-85937f01e1a7"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Satellite Orbit w/ Side-by-Side Celestial Sphere Projection w/ Earth Rotation\
+\
+\>", "Chapter",
+ CellChangeTimes->{{3.765200363045394*^9, 3.765200374748208*^9}, {
+   3.7652006214087343`*^9, 3.7652006257837763`*^9}, 3.7652007460128307`*^9, {
+   3.7652008264014807`*^9, 3.765200828940271*^9}, {3.765200943069355*^9, 
+   3.765200954892178*^9}, {3.765201476227057*^9, 
+   3.765201479882131*^9}},ExpressionUUID->"51d9fa42-6ae6-4ab4-8424-\
+8f34f7787149"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"second", "=", "1"}], ";", 
+   RowBox[{"minute", "=", 
+    RowBox[{"60", " ", "second"}]}], ";", 
+   RowBox[{"hour", "=", 
+    RowBox[{"60", "minute"}]}], ";", 
+   RowBox[{"day", "=", 
+    RowBox[{"24", "hour"}]}], ";", 
+   RowBox[{"year", "=", 
+    RowBox[{"365.25", "day"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Earth", "[", "t_", "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"Satellite", "[", 
+     RowBox[{
+     "t_", ",", "\[Theta]x_", ",", "\[Theta]y_", ",", "period_", ",", 
+      "orbitalRadius_"}], "]"}], ":=", 
+    RowBox[{
+     RowBox[{"Earth", "[", "t", "]"}], "+", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", GridBox[{
+          {
+           RowBox[{"Cos", "[", "\[Theta]y", "]"}], "0", 
+           RowBox[{"Sin", "[", "\[Theta]y", "]"}]},
+          {"0", "1", "0"},
+          {
+           RowBox[{"-", 
+            RowBox[{"Sin", "[", "\[Theta]y", "]"}]}], "0", 
+           RowBox[{"Cos", "[", "\[Theta]y", "]"}]}
+         }], ")"}], ".", 
+       RowBox[{"(", GridBox[{
+          {"1", "0", "0"},
+          {"0", 
+           RowBox[{"Cos", "[", "\[Theta]x", "]"}], 
+           RowBox[{"Sin", "[", "\[Theta]x", "]"}]},
+          {"0", 
+           RowBox[{"-", 
+            RowBox[{"Sin", "[", "\[Theta]x", "]"}]}], 
+           RowBox[{"Cos", "[", "\[Theta]x", "]"}]}
+         }], ")"}], ".", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Cos", "[", 
+          RowBox[{
+           FractionBox["t", "period"], "2", "\[Pi]"}], "]"}], ",", 
+         RowBox[{"Sin", "[", 
+          RowBox[{
+           FractionBox["t", "period"], "2", "\[Pi]"}], "]"}], ",", "0"}], 
+        "}"}]}], "orbitalRadius"}]}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"satOrbitalRadius", "=", "3"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.765199774953907*^9, 3.765199864252728*^9}, {
+  3.76519992045953*^9, 3.765200008305032*^9}, {3.765200043775976*^9, 
+  3.7652001028688717`*^9}, {3.765200491179174*^9, 3.765200517632029*^9}, {
+  3.765200549097658*^9, 3.7652005537446527`*^9}, {3.7652007415419607`*^9, 
+  3.765200758699353*^9}},
+ CellLabel->"In[43]:=",ExpressionUUID->"8722a950-26ec-40d1-bbd5-10ffe704cb04"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Row", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Show", "[", 
+       RowBox[{
+        RowBox[{"Graphics3D", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"Blue", ",", 
+            RowBox[{"Sphere", "[", 
+             RowBox[{
+              RowBox[{"Earth", "[", "t", "]"}], ",", ".3"}], "]"}], ",", 
+            "Cyan", ",", 
+            RowBox[{"Opacity", "[", ".5", "]"}], ",", 
+            RowBox[{"Sphere", "[", 
+             RowBox[{
+              RowBox[{"Earth", "[", "t", "]"}], ",", ".5"}], "]"}], ",", 
+            RowBox[{"Opacity", "[", "1", "]"}], ",", "Gray", ",", 
+            RowBox[{"Sphere", "[", 
+             RowBox[{
+              RowBox[{"Satellite", "[", 
+               RowBox[{
+               "t", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", 
+                "orbitalRadius"}], "]"}], ",", ".1"}], "]"}]}], "}"}], ",", 
+          RowBox[{"PlotRange", "\[Rule]", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "1.2"}], ",", "1.2"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "1.2"}], ",", "1.2"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "1.2"}], ",", "1.2"}], "}"}]}], "}"}], 
+            "orbitalRadius"}]}]}], "]"}], ",", 
+        RowBox[{"ParametricPlot3D", "[", 
+         RowBox[{
+          RowBox[{"Satellite", "[", 
+           RowBox[{
+           "t", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", 
+            "orbitalRadius"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"t", ",", "0", ",", 
+            RowBox[{"2", "day"}]}], "}"}]}], "]"}], ",", 
+        RowBox[{"ParametricPlot3D", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"Earth", "[", "t", "]"}], "s"}], "+", 
+           RowBox[{
+            RowBox[{"Satellite", "[", 
+             RowBox[{
+             "t", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", 
+              "orbitalRadius"}], "]"}], 
+            RowBox[{"(", 
+             RowBox[{"1", "-", "s"}], ")"}]}]}], ",", 
+          RowBox[{"{", 
+           RowBox[{"s", ",", "0", ",", "1"}], "}"}], ",", 
+          RowBox[{"PlotStyle", "\[Rule]", "Black"}]}], "]"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "400"}]}], "]"}], ",", 
+      RowBox[{"Show", "[", 
+       RowBox[{
+        RowBox[{"Graphics3D", "[", 
+         RowBox[{"{", 
+          RowBox[{"Cyan", ",", 
+           RowBox[{"Opacity", "[", ".5", "]"}], ",", 
+           RowBox[{"Sphere", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"0", ",", "0", ",", "0"}], "}"}], ",", "1"}], "]"}], 
+           ",", "Gray", ",", 
+           RowBox[{"Opacity", "[", "1", "]"}]}], "}"}], "]"}], ",", 
+        RowBox[{"ParametricPlot3D", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", GridBox[{
+              {
+               RowBox[{"Cos", "[", 
+                RowBox[{
+                 FractionBox["s", "day"], "2", "\[Pi]"}], "]"}], 
+               RowBox[{"Sin", "[", 
+                RowBox[{
+                 FractionBox["s", "day"], "2", "\[Pi]"}], "]"}], "0"},
+              {
+               RowBox[{"-", 
+                RowBox[{"Sin", "[", 
+                 RowBox[{
+                  FractionBox["s", "day"], "2", "\[Pi]"}], "]"}]}], 
+               RowBox[{"Cos", "[", 
+                RowBox[{
+                 FractionBox["s", "day"], "2", "\[Pi]"}], "]"}], "0"},
+              {"0", "0", "1"}
+             }], ")"}], ".", 
+           FractionBox[
+            RowBox[{"Satellite", "[", 
+             RowBox[{
+             "s", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", 
+              "orbitalRadius"}], "]"}], 
+            RowBox[{"Norm", "[", 
+             RowBox[{"Satellite", "[", 
+              RowBox[{
+              "s", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", 
+               "orbitalRadius"}], "]"}], "]"}]]}], ",", 
+          RowBox[{"{", 
+           RowBox[{"s", ",", "0", ",", "day"}], "}"}], ",", 
+          RowBox[{"PlotStyle", "\[Rule]", "Black"}]}], "]"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "400"}]}], "]"}]}], "}"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", 
+     RowBox[{"2", "day"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Theta]x", ",", "0"}], "}"}], ",", 
+     RowBox[{"-", "\[Pi]"}], ",", "\[Pi]"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Theta]y", ",", "0"}], "}"}], ",", 
+     RowBox[{"-", "\[Pi]"}], ",", "\[Pi]"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"orbitalRadius", ",", "1", ",", "\"\<orbit\>\""}], "}"}], ",", 
+     ".5", ",", "20"}], "}"}], ",", 
+   RowBox[{"ControlPlacement", "\[Rule]", "Left"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.765200113806902*^9, 3.765200298192981*^9}, {
+  3.765200526730618*^9, 3.765200535239147*^9}, {3.765200595421453*^9, 
+  3.765200598619426*^9}, {3.76520063945*^9, 3.765200729949012*^9}, {
+  3.765200766454463*^9, 3.7652008930316057`*^9}, {3.765200960087661*^9, 
+  3.7652010134036283`*^9}, {3.7652010525407476`*^9, 3.76520118228579*^9}, {
+  3.76520129528548*^9, 3.765201337184742*^9}, {3.765201487413093*^9, 
+  3.765201574247664*^9}, {3.765201732204586*^9, 3.7652017410500927`*^9}, {
+  3.7652018062898197`*^9, 3.76520185577078*^9}, {3.765201890752441*^9, 
+  3.76520189631111*^9}, {3.765201965381956*^9, 3.765201997761106*^9}, {
+  3.765202090409074*^9, 3.765202101593462*^9}},
+ CellLabel->"In[74]:=",ExpressionUUID->"7a461d9d-e97b-413d-8127-f6f0e6d296c8"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`orbitalRadius$$ = 1, $CellContext`t$$ = 
+    0, $CellContext`\[Theta]x$$ = 0, $CellContext`\[Theta]y$$ = 0, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`t$$], 0, 172800}, {{
+       Hold[$CellContext`\[Theta]x$$], 0}, -Pi, Pi}, {{
+       Hold[$CellContext`\[Theta]y$$], 0}, -Pi, Pi}, {{
+       Hold[$CellContext`orbitalRadius$$], 1, "orbit"}, 0.5, 20}}, 
+    Typeset`size$$ = {800., {215., 219.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`t$48425$$ = 0, $CellContext`\[Theta]x$48426$$ = 
+    0, $CellContext`\[Theta]y$48427$$ = 
+    0, $CellContext`orbitalRadius$48428$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`orbitalRadius$$ = 1, $CellContext`t$$ = 
+        0, $CellContext`\[Theta]x$$ = 0, $CellContext`\[Theta]y$$ = 0}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`t$$, $CellContext`t$48425$$, 0], 
+        Hold[$CellContext`\[Theta]x$$, $CellContext`\[Theta]x$48426$$, 0], 
+        Hold[$CellContext`\[Theta]y$$, $CellContext`\[Theta]y$48427$$, 0], 
+        Hold[$CellContext`orbitalRadius$$, $CellContext`orbitalRadius$48428$$,
+          0]}, "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Row[{
+         Show[
+          Graphics3D[{Blue, 
+            Sphere[
+             $CellContext`Earth[$CellContext`t$$], 0.3], Cyan, 
+            Opacity[0.5], 
+            Sphere[
+             $CellContext`Earth[$CellContext`t$$], 0.5], 
+            Opacity[1], Gray, 
+            Sphere[
+             $CellContext`Satellite[$CellContext`t$$, \
+$CellContext`\[Theta]x$$, $CellContext`\[Theta]y$$, $CellContext`day, \
+$CellContext`orbitalRadius$$], 0.1]}, 
+           PlotRange -> {{-1.2, 1.2}, {-1.2, 1.2}, {-1.2, 
+             1.2}} $CellContext`orbitalRadius$$], 
+          ParametricPlot3D[
+           $CellContext`Satellite[$CellContext`t$$, $CellContext`\[Theta]x$$, \
+$CellContext`\[Theta]y$$, $CellContext`day, $CellContext`orbitalRadius$$], \
+{$CellContext`t$$, 0, 2 $CellContext`day}], 
+          
+          ParametricPlot3D[$CellContext`Earth[$CellContext`t$$] \
+$CellContext`s + $CellContext`Satellite[$CellContext`t$$, $CellContext`\
+\[Theta]x$$, $CellContext`\[Theta]y$$, $CellContext`day, \
+$CellContext`orbitalRadius$$] (1 - $CellContext`s), {$CellContext`s, 0, 1}, 
+           PlotStyle -> Black], ImageSize -> 400], 
+         Show[
+          Graphics3D[{Cyan, 
+            Opacity[0.5], 
+            Sphere[{0, 0, 0}, 1], Gray, 
+            Opacity[1]}], 
+          ParametricPlot3D[
+           Dot[{{
+              Cos[($CellContext`s/$CellContext`day) 2 Pi], 
+              Sin[($CellContext`s/$CellContext`day) 2 Pi], 0}, {-
+              Sin[($CellContext`s/$CellContext`day) 2 Pi], 
+              Cos[($CellContext`s/$CellContext`day) 2 Pi], 0}, {0, 0, 
+             1}}, $CellContext`Satellite[$CellContext`s, \
+$CellContext`\[Theta]x$$, $CellContext`\[Theta]y$$, $CellContext`day, \
+$CellContext`orbitalRadius$$]/Norm[
+             $CellContext`Satellite[$CellContext`s, $CellContext`\[Theta]x$$, \
+$CellContext`\[Theta]y$$, $CellContext`day, $CellContext`orbitalRadius$$]]], \
+{$CellContext`s, 0, $CellContext`day}, PlotStyle -> Black], ImageSize -> 
+          400]}], "Specifications" :> {{$CellContext`t$$, 0, 
+         172800}, {{$CellContext`\[Theta]x$$, 0}, -Pi, 
+         Pi}, {{$CellContext`\[Theta]y$$, 0}, -Pi, 
+         Pi}, {{$CellContext`orbitalRadius$$, 1, "orbit"}, 0.5, 20}}, 
+      "Options" :> {ControlPlacement -> Left}, "DefaultOptions" :> {}],
+     ImageSizeCache->{1084., {244., 250.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.7652008905231333`*^9, 3.7652008933061647`*^9}, {
+   3.7652009928021507`*^9, 3.765201013736162*^9}, {3.765201119661463*^9, 
+   3.7652011829824123`*^9}, {3.765201296269806*^9, 3.7652013375878572`*^9}, {
+   3.765201556620016*^9, 3.765201574632406*^9}, 3.765201605816749*^9, 
+   3.765201741704482*^9, 3.765201858587812*^9, 3.765201901110276*^9, 
+   3.7652019980996103`*^9, {3.765202093266574*^9, 3.765202102059752*^9}},
+ CellLabel->"Out[74]=",ExpressionUUID->"087acc57-927e-415e-84e1-6de55f00b78c"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Satellite Orbit w/ Side-by-Side Celestial Sphere Projection w/ Earth Rotation \
+and Sat Proj\
+\>", "Chapter",
+ CellChangeTimes->{{3.765200363045394*^9, 3.765200374748208*^9}, {
+   3.7652006214087343`*^9, 3.7652006257837763`*^9}, 3.7652007460128307`*^9, {
+   3.7652008264014807`*^9, 3.765200828940271*^9}, {3.765200943069355*^9, 
+   3.765200954892178*^9}, {3.765201476227057*^9, 3.765201479882131*^9}, {
+   3.765202056166823*^9, 
+   3.7652020711176367`*^9}},ExpressionUUID->"33a99633-6d3b-4638-b7f7-\
+3a5b9c88e7e9"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"second", "=", "1"}], ";", 
+   RowBox[{"minute", "=", 
+    RowBox[{"60", " ", "second"}]}], ";", 
+   RowBox[{"hour", "=", 
+    RowBox[{"60", "minute"}]}], ";", 
+   RowBox[{"day", "=", 
+    RowBox[{"24", "hour"}]}], ";", 
+   RowBox[{"year", "=", 
+    RowBox[{"365.25", "day"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Earth", "[", "t_", "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"Satellite", "[", 
+     RowBox[{
+     "t_", ",", "\[Theta]x_", ",", "\[Theta]y_", ",", "period_", ",", 
+      "orbitalRadius_"}], "]"}], ":=", 
+    RowBox[{
+     RowBox[{"Earth", "[", "t", "]"}], "+", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", GridBox[{
+          {
+           RowBox[{"Cos", "[", "\[Theta]y", "]"}], "0", 
+           RowBox[{"Sin", "[", "\[Theta]y", "]"}]},
+          {"0", "1", "0"},
+          {
+           RowBox[{"-", 
+            RowBox[{"Sin", "[", "\[Theta]y", "]"}]}], "0", 
+           RowBox[{"Cos", "[", "\[Theta]y", "]"}]}
+         }], ")"}], ".", 
+       RowBox[{"(", GridBox[{
+          {"1", "0", "0"},
+          {"0", 
+           RowBox[{"Cos", "[", "\[Theta]x", "]"}], 
+           RowBox[{"Sin", "[", "\[Theta]x", "]"}]},
+          {"0", 
+           RowBox[{"-", 
+            RowBox[{"Sin", "[", "\[Theta]x", "]"}]}], 
+           RowBox[{"Cos", "[", "\[Theta]x", "]"}]}
+         }], ")"}], ".", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Cos", "[", 
+          RowBox[{
+           FractionBox["t", "period"], "2", "\[Pi]"}], "]"}], ",", 
+         RowBox[{"Sin", "[", 
+          RowBox[{
+           FractionBox["t", "period"], "2", "\[Pi]"}], "]"}], ",", "0"}], 
+        "}"}]}], "orbitalRadius"}]}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"satOrbitalRadius", "=", "3"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.765199774953907*^9, 3.765199864252728*^9}, {
+  3.76519992045953*^9, 3.765200008305032*^9}, {3.765200043775976*^9, 
+  3.7652001028688717`*^9}, {3.765200491179174*^9, 3.765200517632029*^9}, {
+  3.765200549097658*^9, 3.7652005537446527`*^9}, {3.7652007415419607`*^9, 
+  3.765200758699353*^9}},
+ CellLabel->"In[43]:=",ExpressionUUID->"1019a36f-bf8e-4b8e-a508-f66c1c02aa1c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Row", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Show", "[", 
+       RowBox[{
+        RowBox[{"Graphics3D", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"Blue", ",", 
+            RowBox[{"Sphere", "[", 
+             RowBox[{
+              RowBox[{"Earth", "[", "t", "]"}], ",", ".3"}], "]"}], ",", 
+            "Cyan", ",", 
+            RowBox[{"Opacity", "[", ".5", "]"}], ",", 
+            RowBox[{"Sphere", "[", 
+             RowBox[{
+              RowBox[{"Earth", "[", "t", "]"}], ",", ".5"}], "]"}], ",", 
+            RowBox[{"Opacity", "[", "1", "]"}], ",", "Gray", ",", 
+            RowBox[{"Sphere", "[", 
+             RowBox[{
+              RowBox[{"Satellite", "[", 
+               RowBox[{
+               "t", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", 
+                "orbitalRadius"}], "]"}], ",", ".1"}], "]"}]}], "}"}], ",", 
+          RowBox[{"PlotRange", "\[Rule]", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "1.2"}], ",", "1.2"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "1.2"}], ",", "1.2"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "1.2"}], ",", "1.2"}], "}"}]}], "}"}], 
+            "orbitalRadius"}]}]}], "]"}], ",", 
+        RowBox[{"ParametricPlot3D", "[", 
+         RowBox[{
+          RowBox[{"Satellite", "[", 
+           RowBox[{
+           "t", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", 
+            "orbitalRadius"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"t", ",", "0", ",", 
+            RowBox[{"2", "day"}]}], "}"}]}], "]"}], ",", 
+        RowBox[{"ParametricPlot3D", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"Earth", "[", "t", "]"}], "s"}], "+", 
+           RowBox[{
+            RowBox[{"Satellite", "[", 
+             RowBox[{
+             "t", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", 
+              "orbitalRadius"}], "]"}], 
+            RowBox[{"(", 
+             RowBox[{"1", "-", "s"}], ")"}]}]}], ",", 
+          RowBox[{"{", 
+           RowBox[{"s", ",", "0", ",", "1"}], "}"}], ",", 
+          RowBox[{"PlotStyle", "\[Rule]", "Black"}]}], "]"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "400"}]}], "]"}], ",", 
+      RowBox[{"Show", "[", 
+       RowBox[{
+        RowBox[{"Graphics3D", "[", 
+         RowBox[{"{", 
+          RowBox[{"Cyan", ",", 
+           RowBox[{"Opacity", "[", ".5", "]"}], ",", 
+           RowBox[{"Sphere", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"0", ",", "0", ",", "0"}], "}"}], ",", "1"}], "]"}], 
+           ",", "Gray", ",", 
+           RowBox[{"Opacity", "[", "1", "]"}], ",", 
+           RowBox[{"Sphere", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"(", GridBox[{
+                 {
+                  RowBox[{"Cos", "[", 
+                   RowBox[{
+                    FractionBox["t", "day"], "2", "\[Pi]"}], "]"}], 
+                  RowBox[{"Sin", "[", 
+                   RowBox[{
+                    FractionBox["t", "day"], "2", "\[Pi]"}], "]"}], "0"},
+                 {
+                  RowBox[{"-", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{
+                    FractionBox["t", "day"], "2", "\[Pi]"}], "]"}]}], 
+                  RowBox[{"Cos", "[", 
+                   RowBox[{
+                    FractionBox["t", "day"], "2", "\[Pi]"}], "]"}], "0"},
+                 {"0", "0", "1"}
+                }], ")"}], ".", 
+              FractionBox[
+               RowBox[{"Satellite", "[", 
+                RowBox[{
+                "t", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", 
+                 "orbitalRadius"}], "]"}], 
+               RowBox[{"Norm", "[", 
+                RowBox[{"Satellite", "[", 
+                 RowBox[{
+                 "t", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", 
+                  "orbitalRadius"}], "]"}], "]"}]]}], ",", ".1"}], "]"}]}], 
+          "}"}], "]"}], ",", 
+        RowBox[{"ParametricPlot3D", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", GridBox[{
+              {
+               RowBox[{"Cos", "[", 
+                RowBox[{
+                 FractionBox["s", "day"], "2", "\[Pi]"}], "]"}], 
+               RowBox[{"Sin", "[", 
+                RowBox[{
+                 FractionBox["s", "day"], "2", "\[Pi]"}], "]"}], "0"},
+              {
+               RowBox[{"-", 
+                RowBox[{"Sin", "[", 
+                 RowBox[{
+                  FractionBox["s", "day"], "2", "\[Pi]"}], "]"}]}], 
+               RowBox[{"Cos", "[", 
+                RowBox[{
+                 FractionBox["s", "day"], "2", "\[Pi]"}], "]"}], "0"},
+              {"0", "0", "1"}
+             }], ")"}], ".", 
+           FractionBox[
+            RowBox[{"Satellite", "[", 
+             RowBox[{
+             "s", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", 
+              "orbitalRadius"}], "]"}], 
+            RowBox[{"Norm", "[", 
+             RowBox[{"Satellite", "[", 
+              RowBox[{
+              "s", ",", "\[Theta]x", ",", "\[Theta]y", ",", "day", ",", 
+               "orbitalRadius"}], "]"}], "]"}]]}], ",", 
+          RowBox[{"{", 
+           RowBox[{"s", ",", "0", ",", "day"}], "}"}], ",", 
+          RowBox[{"PlotStyle", "\[Rule]", "Black"}]}], "]"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "400"}]}], "]"}]}], "}"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", "day"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Theta]x", ",", "0"}], "}"}], ",", 
+     RowBox[{"-", "\[Pi]"}], ",", "\[Pi]"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Theta]y", ",", "0"}], "}"}], ",", 
+     RowBox[{"-", "\[Pi]"}], ",", "\[Pi]"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"orbitalRadius", ",", "1", ",", "\"\<orbit\>\""}], "}"}], ",", 
+     ".5", ",", "20"}], "}"}], ",", 
+   RowBox[{"ControlPlacement", "\[Rule]", "Left"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.765200113806902*^9, 3.765200298192981*^9}, {
+   3.765200526730618*^9, 3.765200535239147*^9}, {3.765200595421453*^9, 
+   3.765200598619426*^9}, {3.76520063945*^9, 3.765200729949012*^9}, {
+   3.765200766454463*^9, 3.7652008930316057`*^9}, {3.765200960087661*^9, 
+   3.7652010134036283`*^9}, {3.7652010525407476`*^9, 3.76520118228579*^9}, {
+   3.76520129528548*^9, 3.765201337184742*^9}, {3.765201487413093*^9, 
+   3.765201574247664*^9}, {3.765201732204586*^9, 3.7652017410500927`*^9}, {
+   3.7652018062898197`*^9, 3.76520185577078*^9}, {3.765201890752441*^9, 
+   3.76520189631111*^9}, {3.765201965381956*^9, 3.765201997761106*^9}, {
+   3.765202082857234*^9, 3.7652020860394497`*^9}, 3.765202135760434*^9},
+ CellLabel->"In[75]:=",ExpressionUUID->"f47e27b5-5076-443d-9ee0-96a8bdb0f3a0"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`orbitalRadius$$ = 1, $CellContext`t$$ = 
+    83400., $CellContext`\[Theta]x$$ = 
+    1.156106096521044, $CellContext`\[Theta]y$$ = 1.5707963267948966`, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`t$$], 0, 86400}, {{
+       Hold[$CellContext`\[Theta]x$$], 0}, -Pi, Pi}, {{
+       Hold[$CellContext`\[Theta]y$$], 0}, -Pi, Pi}, {{
+       Hold[$CellContext`orbitalRadius$$], 1, "orbit"}, 0.5, 20}}, 
+    Typeset`size$$ = {800., {219., 223.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`t$53090$$ = 0, $CellContext`\[Theta]x$53091$$ = 
+    0, $CellContext`\[Theta]y$53092$$ = 
+    0, $CellContext`orbitalRadius$53093$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`orbitalRadius$$ = 1, $CellContext`t$$ = 
+        0, $CellContext`\[Theta]x$$ = 0, $CellContext`\[Theta]y$$ = 0}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`t$$, $CellContext`t$53090$$, 0], 
+        Hold[$CellContext`\[Theta]x$$, $CellContext`\[Theta]x$53091$$, 0], 
+        Hold[$CellContext`\[Theta]y$$, $CellContext`\[Theta]y$53092$$, 0], 
+        Hold[$CellContext`orbitalRadius$$, $CellContext`orbitalRadius$53093$$,
+          0]}, "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Row[{
+         Show[
+          Graphics3D[{Blue, 
+            Sphere[
+             $CellContext`Earth[$CellContext`t$$], 0.3], Cyan, 
+            Opacity[0.5], 
+            Sphere[
+             $CellContext`Earth[$CellContext`t$$], 0.5], 
+            Opacity[1], Gray, 
+            Sphere[
+             $CellContext`Satellite[$CellContext`t$$, \
+$CellContext`\[Theta]x$$, $CellContext`\[Theta]y$$, $CellContext`day, \
+$CellContext`orbitalRadius$$], 0.1]}, 
+           PlotRange -> {{-1.2, 1.2}, {-1.2, 1.2}, {-1.2, 
+             1.2}} $CellContext`orbitalRadius$$], 
+          ParametricPlot3D[
+           $CellContext`Satellite[$CellContext`t$$, $CellContext`\[Theta]x$$, \
+$CellContext`\[Theta]y$$, $CellContext`day, $CellContext`orbitalRadius$$], \
+{$CellContext`t$$, 0, 2 $CellContext`day}], 
+          
+          ParametricPlot3D[$CellContext`Earth[$CellContext`t$$] \
+$CellContext`s + $CellContext`Satellite[$CellContext`t$$, $CellContext`\
+\[Theta]x$$, $CellContext`\[Theta]y$$, $CellContext`day, \
+$CellContext`orbitalRadius$$] (1 - $CellContext`s), {$CellContext`s, 0, 1}, 
+           PlotStyle -> Black], ImageSize -> 400], 
+         Show[
+          Graphics3D[{Cyan, 
+            Opacity[0.5], 
+            Sphere[{0, 0, 0}, 1], Gray, 
+            Opacity[1], 
+            Sphere[
+             Dot[{{
+                Cos[($CellContext`t$$/$CellContext`day) 2 Pi], 
+                Sin[($CellContext`t$$/$CellContext`day) 2 Pi], 0}, {-
+                Sin[($CellContext`t$$/$CellContext`day) 2 Pi], 
+                Cos[($CellContext`t$$/$CellContext`day) 2 Pi], 0}, {0, 0, 
+               1}}, $CellContext`Satellite[$CellContext`t$$, $CellContext`\
+\[Theta]x$$, $CellContext`\[Theta]y$$, $CellContext`day, \
+$CellContext`orbitalRadius$$]/Norm[
+               $CellContext`Satellite[$CellContext`t$$, \
+$CellContext`\[Theta]x$$, $CellContext`\[Theta]y$$, $CellContext`day, \
+$CellContext`orbitalRadius$$]]], 0.1]}], 
+          ParametricPlot3D[
+           Dot[{{
+              Cos[($CellContext`s/$CellContext`day) 2 Pi], 
+              Sin[($CellContext`s/$CellContext`day) 2 Pi], 0}, {-
+              Sin[($CellContext`s/$CellContext`day) 2 Pi], 
+              Cos[($CellContext`s/$CellContext`day) 2 Pi], 0}, {0, 0, 
+             
+             1}}, $CellContext`Satellite[$CellContext`s, \
+$CellContext`\[Theta]x$$, $CellContext`\[Theta]y$$, $CellContext`day, \
+$CellContext`orbitalRadius$$]/Norm[
+             $CellContext`Satellite[$CellContext`s, $CellContext`\[Theta]x$$, \
+$CellContext`\[Theta]y$$, $CellContext`day, $CellContext`orbitalRadius$$]]], \
+{$CellContext`s, 0, $CellContext`day}, PlotStyle -> Black], ImageSize -> 
+          400]}], "Specifications" :> {{$CellContext`t$$, 0, 
+         86400}, {{$CellContext`\[Theta]x$$, 0}, -Pi, 
+         Pi}, {{$CellContext`\[Theta]y$$, 0}, -Pi, 
+         Pi}, {{$CellContext`orbitalRadius$$, 1, "orbit"}, 0.5, 20}}, 
+      "Options" :> {ControlPlacement -> Left}, "DefaultOptions" :> {}],
+     ImageSizeCache->{1084., {248., 254.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.7652008905231333`*^9, 3.7652008933061647`*^9}, {
+   3.7652009928021507`*^9, 3.765201013736162*^9}, {3.765201119661463*^9, 
+   3.7652011829824123`*^9}, {3.765201296269806*^9, 3.7652013375878572`*^9}, {
+   3.765201556620016*^9, 3.765201574632406*^9}, 3.765201605816749*^9, 
+   3.765201741704482*^9, 3.765201858587812*^9, 3.765201901110276*^9, 
+   3.7652019980996103`*^9, 3.765202086314336*^9, 3.765202136211507*^9},
+ CellLabel->"Out[75]=",ExpressionUUID->"b0982d13-9392-4f78-992b-a37733673cb5"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Non-Geosynchronous Orbit", "Chapter",
+ CellChangeTimes->{{3.765200363045394*^9, 3.765200374748208*^9}, {
+   3.7652006214087343`*^9, 3.7652006257837763`*^9}, 3.7652007460128307`*^9, {
+   3.7652008264014807`*^9, 3.765200828940271*^9}, {3.765200943069355*^9, 
+   3.765200954892178*^9}, {3.765201476227057*^9, 3.765201479882131*^9}, {
+   3.765202056166823*^9, 3.7652020711176367`*^9}, {3.765202181570325*^9, 
+   3.76520218844143*^9}},ExpressionUUID->"5d560dba-68c9-4eaf-ab10-\
+b1e95626b6f2"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"second", "=", "1"}], ";", 
+   RowBox[{"minute", "=", 
+    RowBox[{"60", " ", "second"}]}], ";", 
+   RowBox[{"hour", "=", 
+    RowBox[{"60", "minute"}]}], ";", 
+   RowBox[{"day", "=", 
+    RowBox[{"24", "hour"}]}], ";", 
+   RowBox[{"year", "=", 
+    RowBox[{"365.25", "day"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Earth", "[", "t_", "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"Satellite", "[", 
+     RowBox[{
+     "t_", ",", "\[Theta]x_", ",", "\[Theta]y_", ",", "period_", ",", 
+      "orbitalRadius_"}], "]"}], ":=", 
+    RowBox[{
+     RowBox[{"Earth", "[", "t", "]"}], "+", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", GridBox[{
+          {
+           RowBox[{"Cos", "[", "\[Theta]y", "]"}], "0", 
+           RowBox[{"Sin", "[", "\[Theta]y", "]"}]},
+          {"0", "1", "0"},
+          {
+           RowBox[{"-", 
+            RowBox[{"Sin", "[", "\[Theta]y", "]"}]}], "0", 
+           RowBox[{"Cos", "[", "\[Theta]y", "]"}]}
+         }], ")"}], ".", 
+       RowBox[{"(", GridBox[{
+          {"1", "0", "0"},
+          {"0", 
+           RowBox[{"Cos", "[", "\[Theta]x", "]"}], 
+           RowBox[{"Sin", "[", "\[Theta]x", "]"}]},
+          {"0", 
+           RowBox[{"-", 
+            RowBox[{"Sin", "[", "\[Theta]x", "]"}]}], 
+           RowBox[{"Cos", "[", "\[Theta]x", "]"}]}
+         }], ")"}], ".", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Cos", "[", 
+          RowBox[{
+           FractionBox["t", "period"], "2", "\[Pi]"}], "]"}], ",", 
+         RowBox[{"Sin", "[", 
+          RowBox[{
+           FractionBox["t", "period"], "2", "\[Pi]"}], "]"}], ",", "0"}], 
+        "}"}]}], "orbitalRadius"}]}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"satOrbitalRadius", "=", "3"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.765199774953907*^9, 3.765199864252728*^9}, {
+  3.76519992045953*^9, 3.765200008305032*^9}, {3.765200043775976*^9, 
+  3.7652001028688717`*^9}, {3.765200491179174*^9, 3.765200517632029*^9}, {
+  3.765200549097658*^9, 3.7652005537446527`*^9}, {3.7652007415419607`*^9, 
+  3.765200758699353*^9}},
+ CellLabel->"In[43]:=",ExpressionUUID->"d3cd9be6-8d5a-42dd-a6b4-e5b75861eb44"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Row", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Show", "[", 
+       RowBox[{
+        RowBox[{"Graphics3D", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"Blue", ",", 
+            RowBox[{"Sphere", "[", 
+             RowBox[{
+              RowBox[{"Earth", "[", "t", "]"}], ",", ".3"}], "]"}], ",", 
+            "Cyan", ",", 
+            RowBox[{"Opacity", "[", ".5", "]"}], ",", 
+            RowBox[{"Sphere", "[", 
+             RowBox[{
+              RowBox[{"Earth", "[", "t", "]"}], ",", ".5"}], "]"}], ",", 
+            RowBox[{"Opacity", "[", "1", "]"}], ",", "Gray", ",", 
+            RowBox[{"Sphere", "[", 
+             RowBox[{
+              RowBox[{"Satellite", "[", 
+               RowBox[{
+               "t", ",", "\[Theta]x", ",", "\[Theta]y", ",", "period", ",", 
+                "orbitalRadius"}], "]"}], ",", ".1"}], "]"}]}], "}"}], ",", 
+          RowBox[{"PlotRange", "\[Rule]", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "1.2"}], ",", "1.2"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "1.2"}], ",", "1.2"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "1.2"}], ",", "1.2"}], "}"}]}], "}"}], 
+            "orbitalRadius"}]}]}], "]"}], ",", 
+        RowBox[{"ParametricPlot3D", "[", 
+         RowBox[{
+          RowBox[{"Satellite", "[", 
+           RowBox[{
+           "t", ",", "\[Theta]x", ",", "\[Theta]y", ",", "period", ",", 
+            "orbitalRadius"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"t", ",", "0", ",", 
+            RowBox[{"2", "day"}]}], "}"}]}], "]"}], ",", 
+        RowBox[{"ParametricPlot3D", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"Earth", "[", "t", "]"}], "s"}], "+", 
+           RowBox[{
+            RowBox[{"Satellite", "[", 
+             RowBox[{
+             "t", ",", "\[Theta]x", ",", "\[Theta]y", ",", "period", ",", 
+              "orbitalRadius"}], "]"}], 
+            RowBox[{"(", 
+             RowBox[{"1", "-", "s"}], ")"}]}]}], ",", 
+          RowBox[{"{", 
+           RowBox[{"s", ",", "0", ",", "1"}], "}"}], ",", 
+          RowBox[{"PlotStyle", "\[Rule]", "Black"}]}], "]"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "400"}]}], "]"}], ",", 
+      RowBox[{"Show", "[", 
+       RowBox[{
+        RowBox[{"Graphics3D", "[", 
+         RowBox[{"{", 
+          RowBox[{"Cyan", ",", 
+           RowBox[{"Opacity", "[", ".5", "]"}], ",", 
+           RowBox[{"Sphere", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"0", ",", "0", ",", "0"}], "}"}], ",", "1"}], "]"}], 
+           ",", "Gray", ",", 
+           RowBox[{"Opacity", "[", "1", "]"}], ",", 
+           RowBox[{"Sphere", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"(", GridBox[{
+                 {
+                  RowBox[{"Cos", "[", 
+                   RowBox[{
+                    FractionBox["t", "day"], "2", "\[Pi]"}], "]"}], 
+                  RowBox[{"Sin", "[", 
+                   RowBox[{
+                    FractionBox["t", "day"], "2", "\[Pi]"}], "]"}], "0"},
+                 {
+                  RowBox[{"-", 
+                   RowBox[{"Sin", "[", 
+                    RowBox[{
+                    FractionBox["t", "day"], "2", "\[Pi]"}], "]"}]}], 
+                  RowBox[{"Cos", "[", 
+                   RowBox[{
+                    FractionBox["t", "day"], "2", "\[Pi]"}], "]"}], "0"},
+                 {"0", "0", "1"}
+                }], ")"}], ".", 
+              FractionBox[
+               RowBox[{"Satellite", "[", 
+                RowBox[{
+                "t", ",", "\[Theta]x", ",", "\[Theta]y", ",", "period", ",", 
+                 "orbitalRadius"}], "]"}], 
+               RowBox[{"Norm", "[", 
+                RowBox[{"Satellite", "[", 
+                 RowBox[{
+                 "t", ",", "\[Theta]x", ",", "\[Theta]y", ",", "period", ",", 
+                  "orbitalRadius"}], "]"}], "]"}]]}], ",", ".1"}], "]"}]}], 
+          "}"}], "]"}], ",", 
+        RowBox[{"ParametricPlot3D", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", GridBox[{
+              {
+               RowBox[{"Cos", "[", 
+                RowBox[{
+                 FractionBox["s", "day"], "2", "\[Pi]"}], "]"}], 
+               RowBox[{"Sin", "[", 
+                RowBox[{
+                 FractionBox["s", "day"], "2", "\[Pi]"}], "]"}], "0"},
+              {
+               RowBox[{"-", 
+                RowBox[{"Sin", "[", 
+                 RowBox[{
+                  FractionBox["s", "day"], "2", "\[Pi]"}], "]"}]}], 
+               RowBox[{"Cos", "[", 
+                RowBox[{
+                 FractionBox["s", "day"], "2", "\[Pi]"}], "]"}], "0"},
+              {"0", "0", "1"}
+             }], ")"}], ".", 
+           FractionBox[
+            RowBox[{"Satellite", "[", 
+             RowBox[{
+             "s", ",", "\[Theta]x", ",", "\[Theta]y", ",", "period", ",", 
+              "orbitalRadius"}], "]"}], 
+            RowBox[{"Norm", "[", 
+             RowBox[{"Satellite", "[", 
+              RowBox[{
+              "s", ",", "\[Theta]x", ",", "\[Theta]y", ",", "period", ",", 
+               "orbitalRadius"}], "]"}], "]"}]]}], ",", 
+          RowBox[{"{", 
+           RowBox[{"s", ",", "0", ",", "period"}], "}"}], ",", 
+          RowBox[{"PlotStyle", "\[Rule]", "Black"}]}], "]"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "400"}]}], "]"}]}], "}"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", "period"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Theta]x", ",", "0"}], "}"}], ",", 
+     RowBox[{"-", "\[Pi]"}], ",", "\[Pi]"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Theta]y", ",", "0"}], "}"}], ",", 
+     RowBox[{"-", "\[Pi]"}], ",", "\[Pi]"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"period", ",", "day"}], "}"}], ",", 
+     FractionBox["day", "12"], ",", 
+     RowBox[{"7", "day"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"orbitalRadius", ",", "1", ",", "\"\<orbit\>\""}], "}"}], ",", 
+     ".5", ",", "20"}], "}"}], ",", 
+   RowBox[{"ControlPlacement", "\[Rule]", "Left"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.765200113806902*^9, 3.765200298192981*^9}, {
+   3.765200526730618*^9, 3.765200535239147*^9}, {3.765200595421453*^9, 
+   3.765200598619426*^9}, {3.76520063945*^9, 3.765200729949012*^9}, {
+   3.765200766454463*^9, 3.7652008930316057`*^9}, {3.765200960087661*^9, 
+   3.7652010134036283`*^9}, {3.7652010525407476`*^9, 3.76520118228579*^9}, {
+   3.76520129528548*^9, 3.765201337184742*^9}, {3.765201487413093*^9, 
+   3.765201574247664*^9}, {3.765201732204586*^9, 3.7652017410500927`*^9}, {
+   3.7652018062898197`*^9, 3.76520185577078*^9}, {3.765201890752441*^9, 
+   3.76520189631111*^9}, {3.765201965381956*^9, 3.765201997761106*^9}, {
+   3.765202082857234*^9, 3.7652020860394497`*^9}, 3.765202135760434*^9, {
+   3.765202197958523*^9, 3.76520224941805*^9}, {3.76520231644944*^9, 
+   3.765202363774268*^9}},
+ CellLabel->"In[79]:=",ExpressionUUID->"d8bbe21b-22df-4809-92fb-8581031ab810"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`orbitalRadius$$ = 1, $CellContext`period$$ =
+     465000., $CellContext`t$$ = 268770., $CellContext`\[Theta]x$$ = 
+    0.9424777960769379, $CellContext`\[Theta]y$$ = -1.9100883333825944`, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`t$$], 0, 
+      Dynamic[$CellContext`period$$]}, {{
+       Hold[$CellContext`\[Theta]x$$], 0}, -Pi, Pi}, {{
+       Hold[$CellContext`\[Theta]y$$], 0}, -Pi, Pi}, {{
+       Hold[$CellContext`period$$], 86400}, 7200, 604800}, {{
+       Hold[$CellContext`orbitalRadius$$], 1, "orbit"}, 0.5, 20}}, 
+    Typeset`size$$ = {800., {218., 222.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`t$62593$$ = 0, $CellContext`\[Theta]x$62594$$ = 
+    0, $CellContext`\[Theta]y$62595$$ = 0, $CellContext`period$62596$$ = 
+    0, $CellContext`orbitalRadius$62597$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`orbitalRadius$$ = 1, $CellContext`period$$ = 
+        86400, $CellContext`t$$ = 0, $CellContext`\[Theta]x$$ = 
+        0, $CellContext`\[Theta]y$$ = 0}, "ControllerVariables" :> {
+        Hold[$CellContext`t$$, $CellContext`t$62593$$, 0], 
+        Hold[$CellContext`\[Theta]x$$, $CellContext`\[Theta]x$62594$$, 0], 
+        Hold[$CellContext`\[Theta]y$$, $CellContext`\[Theta]y$62595$$, 0], 
+        Hold[$CellContext`period$$, $CellContext`period$62596$$, 0], 
+        Hold[$CellContext`orbitalRadius$$, $CellContext`orbitalRadius$62597$$,
+          0]}, "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Row[{
+         Show[
+          Graphics3D[{Blue, 
+            Sphere[
+             $CellContext`Earth[$CellContext`t$$], 0.3], Cyan, 
+            Opacity[0.5], 
+            Sphere[
+             $CellContext`Earth[$CellContext`t$$], 0.5], 
+            Opacity[1], Gray, 
+            Sphere[
+             $CellContext`Satellite[$CellContext`t$$, \
+$CellContext`\[Theta]x$$, $CellContext`\[Theta]y$$, $CellContext`period$$, \
+$CellContext`orbitalRadius$$], 0.1]}, 
+           PlotRange -> {{-1.2, 1.2}, {-1.2, 1.2}, {-1.2, 
+             1.2}} $CellContext`orbitalRadius$$], 
+          ParametricPlot3D[
+           $CellContext`Satellite[$CellContext`t$$, $CellContext`\[Theta]x$$, \
+$CellContext`\[Theta]y$$, $CellContext`period$$, \
+$CellContext`orbitalRadius$$], {$CellContext`t$$, 0, 2 $CellContext`day}], 
+          
+          ParametricPlot3D[$CellContext`Earth[$CellContext`t$$] \
+$CellContext`s + $CellContext`Satellite[$CellContext`t$$, $CellContext`\
+\[Theta]x$$, $CellContext`\[Theta]y$$, $CellContext`period$$, \
+$CellContext`orbitalRadius$$] (1 - $CellContext`s), {$CellContext`s, 0, 1}, 
+           PlotStyle -> Black], ImageSize -> 400], 
+         Show[
+          Graphics3D[{Cyan, 
+            Opacity[0.5], 
+            Sphere[{0, 0, 0}, 1], Gray, 
+            Opacity[1], 
+            Sphere[
+             Dot[{{
+                Cos[($CellContext`t$$/$CellContext`day) 2 Pi], 
+                Sin[($CellContext`t$$/$CellContext`day) 2 Pi], 0}, {-
+                Sin[($CellContext`t$$/$CellContext`day) 2 Pi], 
+                Cos[($CellContext`t$$/$CellContext`day) 2 Pi], 0}, {0, 0, 
+               1}}, $CellContext`Satellite[$CellContext`t$$, $CellContext`\
+\[Theta]x$$, $CellContext`\[Theta]y$$, $CellContext`period$$, \
+$CellContext`orbitalRadius$$]/Norm[
+               $CellContext`Satellite[$CellContext`t$$, \
+$CellContext`\[Theta]x$$, $CellContext`\[Theta]y$$, $CellContext`period$$, \
+$CellContext`orbitalRadius$$]]], 0.1]}], 
+          ParametricPlot3D[
+           Dot[{{
+              Cos[($CellContext`s/$CellContext`day) 2 Pi], 
+              Sin[($CellContext`s/$CellContext`day) 2 Pi], 0}, {-
+              Sin[($CellContext`s/$CellContext`day) 2 Pi], 
+              Cos[($CellContext`s/$CellContext`day) 2 Pi], 0}, {0, 0, 
+             1}}, $CellContext`Satellite[$CellContext`s, \
+$CellContext`\[Theta]x$$, $CellContext`\[Theta]y$$, $CellContext`period$$, \
+$CellContext`orbitalRadius$$]/Norm[
+             $CellContext`Satellite[$CellContext`s, $CellContext`\[Theta]x$$, \
+$CellContext`\[Theta]y$$, $CellContext`period$$, \
+$CellContext`orbitalRadius$$]]], {$CellContext`s, 0, $CellContext`period$$}, 
+           PlotStyle -> Black], ImageSize -> 400]}], 
+      "Specifications" :> {{$CellContext`t$$, 0, 
+         Dynamic[$CellContext`period$$]}, {{$CellContext`\[Theta]x$$, 0}, -Pi,
+          Pi}, {{$CellContext`\[Theta]y$$, 0}, -Pi, 
+         Pi}, {{$CellContext`period$$, 86400}, 7200, 
+         604800}, {{$CellContext`orbitalRadius$$, 1, "orbit"}, 0.5, 20}}, 
+      "Options" :> {ControlPlacement -> Left}, "DefaultOptions" :> {}],
+     ImageSizeCache->{1091., {247., 253.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.7652008905231333`*^9, 3.7652008933061647`*^9}, {
+   3.7652009928021507`*^9, 3.765201013736162*^9}, {3.765201119661463*^9, 
+   3.7652011829824123`*^9}, {3.765201296269806*^9, 3.7652013375878572`*^9}, {
+   3.765201556620016*^9, 3.765201574632406*^9}, 3.765201605816749*^9, 
+   3.765201741704482*^9, 3.765201858587812*^9, 3.765201901110276*^9, 
+   3.7652019980996103`*^9, 3.765202086314336*^9, 3.765202136211507*^9, {
+   3.765202245878749*^9, 3.765202249730987*^9}, {3.76520233862682*^9, 
+   3.765202364212305*^9}},
+ CellLabel->"Out[79]=",ExpressionUUID->"3459799a-56fc-40df-8088-9a9f7e7910d4"]
+}, Open  ]],
+
+Cell[TextData[StyleBox["Ajeet Gary - University of Maryland Experimental \
+Geometry Lab\nCreated: April 25th, 2019\nLast Updated: April 25th, 2019",
+ FontFamily->"Calibri",
+ FontSize->14,
+ FontWeight->"Bold",
+ FontColor->RGBColor[0.9688410772869459, 0., 0.04487678339818418]]], "Section",\
+
+ CellChangeTimes->{{3.744720759361576*^9, 3.744720769654295*^9}, {
+  3.744720816813613*^9, 3.7447208223929443`*^9}, {3.744720856164445*^9, 
+  3.744720891474593*^9}, {3.744838141121181*^9, 3.744838147182004*^9}, {
+  3.7455144445849237`*^9, 3.745514445699499*^9}, {3.7460997875592747`*^9, 
+  3.746099798005487*^9}, {3.746110812006076*^9, 3.7461108372935534`*^9}, {
+  3.765199409788542*^9, 3.7651994243948793`*^9}},
+ TextAlignment->Right,ExpressionUUID->"bca29737-9bf4-429c-9e31-2abba200cef6"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1412, 831},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 262, 4, 98, "Title",ExpressionUUID->"eda616d9-56dc-4dce-adf7-2352ca44c80f"],
+Cell[CellGroupData[{
+Cell[867, 30, 169, 3, 69, "Chapter",ExpressionUUID->"da4d2059-e7cd-49ba-899d-6736bd48c352"],
+Cell[1039, 35, 2110, 60, 108, "Input",ExpressionUUID->"4b535e38-9f44-4259-bb99-3130458df995"],
+Cell[CellGroupData[{
+Cell[3174, 99, 1900, 54, 52, "Input",ExpressionUUID->"c97c3594-3867-4908-82bf-2ce3ddb669ad"],
+Cell[5077, 155, 2778, 53, 470, "Output",ExpressionUUID->"11cc55c2-9564-4b7d-baae-b4785721b086"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7904, 214, 281, 4, 69, "Chapter",ExpressionUUID->"0b0f4c7a-5ef9-4c69-90a1-a05081630885"],
+Cell[8188, 220, 2367, 67, 175, "Input",ExpressionUUID->"d3958573-bad2-42ec-af19-9ec14dc24b49"],
+Cell[CellGroupData[{
+Cell[10580, 291, 2464, 65, 94, "Input",ExpressionUUID->"e83975ea-2c50-489a-bd7e-349b54993408"],
+Cell[13047, 358, 3056, 61, 470, "Output",ExpressionUUID->"524c7ccf-dc50-491d-aaa9-9f59976b0ab8"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16152, 425, 356, 7, 69, "Chapter",ExpressionUUID->"11cde05e-3f5a-4f7f-b19e-a0a28f695525"],
+Cell[16511, 434, 2367, 67, 175, "Input",ExpressionUUID->"b6c63a80-a154-47e3-867e-d68857ce6d86"],
+Cell[CellGroupData[{
+Cell[18903, 505, 3006, 80, 115, "Input",ExpressionUUID->"fdecb0a1-e23a-407a-bcd4-e00a85e30c6d"],
+Cell[21912, 587, 3356, 64, 470, "Output",ExpressionUUID->"bbd0efc5-1040-4d90-bf05-476efb9d6c90"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[25317, 657, 381, 5, 69, "Chapter",ExpressionUUID->"1a45f9ba-9bbf-4601-b3ec-058be0b4c21a"],
+Cell[25701, 664, 2367, 67, 175, "Input",ExpressionUUID->"8bd7eb1d-56d7-442d-8b74-8a79e4d27455"],
+Cell[CellGroupData[{
+Cell[28093, 735, 4532, 113, 208, "Input",ExpressionUUID->"d3551a38-9f46-43fe-9717-2b984a2fd3bf"],
+Cell[32628, 850, 4119, 81, 622, "Output",ExpressionUUID->"07658307-fe8f-4175-aae4-af4eba45ea20"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[36796, 937, 459, 9, 69, "Chapter",ExpressionUUID->"eeb04090-b2fd-4a89-bb2f-bebb8fe0ae70"],
+Cell[37258, 948, 2367, 67, 175, "Input",ExpressionUUID->"22e11cac-8042-4fdc-a68c-d9189b46a720"],
+Cell[CellGroupData[{
+Cell[39650, 1019, 6990, 173, 367, "Input",ExpressionUUID->"2039576b-4789-4f15-b5dc-68f4dca2b45a"],
+Cell[46643, 1194, 5602, 108, 622, "Output",ExpressionUUID->"0871eab6-807f-46ad-9b39-85937f01e1a7"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[52294, 1308, 459, 9, 69, "Chapter",ExpressionUUID->"51d9fa42-6ae6-4ab4-8424-8f34f7787149"],
+Cell[52756, 1319, 2367, 67, 175, "Input",ExpressionUUID->"8722a950-26ec-40d1-bbd5-10ffe704cb04"],
+Cell[CellGroupData[{
+Cell[55148, 1390, 5744, 142, 279, "Input",ExpressionUUID->"7a461d9d-e97b-413d-8127-f6f0e6d296c8"],
+Cell[60895, 1534, 4948, 94, 513, "Output",ExpressionUUID->"087acc57-927e-415e-84e1-6de55f00b78c"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[65892, 1634, 524, 10, 69, "Chapter",ExpressionUUID->"33a99633-6d3b-4638-b7f7-3a5b9c88e7e9"],
+Cell[66419, 1646, 2367, 67, 175, "Input",ExpressionUUID->"1019a36f-bf8e-4b8e-a508-f66c1c02aa1c"],
+Cell[CellGroupData[{
+Cell[68811, 1717, 7051, 173, 367, "Input",ExpressionUUID->"f47e27b5-5076-443d-9ee0-96a8bdb0f3a0"],
+Cell[75865, 1892, 5656, 108, 521, "Output",ExpressionUUID->"b0982d13-9392-4f78-992b-a37733673cb5"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[81570, 2006, 493, 7, 69, "Chapter",ExpressionUUID->"5d560dba-68c9-4eaf-ab10-b1e95626b6f2"],
+Cell[82066, 2015, 2367, 67, 175, "Input",ExpressionUUID->"d3cd9be6-8d5a-42dd-a6b4-e5b75861eb44"],
+Cell[CellGroupData[{
+Cell[84458, 2086, 7355, 181, 379, "Input",ExpressionUUID->"d8bbe21b-22df-4809-92fb-8581031ab810"],
+Cell[91816, 2269, 6138, 114, 519, "Output",ExpressionUUID->"3459799a-56fc-40df-8088-9a9f7e7910d4"]
+}, Open  ]],
+Cell[97969, 2386, 781, 13, 89, "Section",ExpressionUUID->"bca29737-9bf4-429c-9e31-2abba200cef6"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

@@ -1,0 +1,258 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      9298,        250]
+NotebookOptionsPosition[      8731,        230]
+NotebookOutlinePosition[      9090,        246]
+CellTagsIndexPosition[      9047,        243]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Koch Snowflake", "Title",
+ CellChangeTimes->{{3.751309829306672*^9, 
+  3.751309836695407*^9}},ExpressionUUID->"05a7426e-4795-4975-acb6-\
+381a26d65837"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"Koch", "[", 
+     RowBox[{"a_", ",", "b_"}], "]"}], ":=", 
+    RowBox[{"{", 
+     RowBox[{"a", ",", 
+      RowBox[{
+       RowBox[{
+        FractionBox["2", "3"], "a"}], "+", 
+       RowBox[{
+        FractionBox["1", "3"], "b"}]}], ",", 
+      RowBox[{
+       RowBox[{
+        FractionBox["1", "2"], "a"}], "+", 
+       RowBox[{
+        FractionBox["1", "2"], "b"}], "+", 
+       RowBox[{
+        FractionBox[
+         RowBox[{"2", "/", "3"}], 
+         RowBox[{"Sqrt", "[", "12", "]"}]], 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"b", "-", "a"}], ")"}], ".", 
+         RowBox[{"(", GridBox[{
+            {"0", 
+             RowBox[{"-", "1"}]},
+            {"1", "0"}
+           }], ")"}]}]}]}], ",", 
+      RowBox[{
+       RowBox[{
+        FractionBox["1", "3"], "a"}], "+", 
+       RowBox[{
+        FractionBox["2", "3"], "b"}]}], ",", "b"}], "}"}]}], ";", " ", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "Turns", " ", "2", " ", "points", " ", "into", " ", "5", " ", "via", " ", 
+     "the", " ", "Koch", " ", "fractal", " ", "pattern"}], " ", "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"n", "=", "3"}], ";"}], 
+  RowBox[{"(*", " ", "Triangle", " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"initial", "=", 
+    RowBox[{"Join", "[", 
+     RowBox[{
+      RowBox[{"CirclePoints", "[", "n", "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"CirclePoints", "[", "n", "]"}], "[", 
+        RowBox[{"[", "1", "]"}], "]"}], "}"}]}], "]"}]}], ";"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Starting", " ", "shape"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "KochList", " ", "just", " ", "makes", " ", "a", " ", "new", " ", "list", 
+    " ", "by", " ", "doing", " ", "Koch", " ", "on", " ", "each", " ", 
+    "consecutive", " ", "pair", " ", "of", " ", "points"}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"KochList", "[", "list_", "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"newList", "=", 
+       RowBox[{"{", "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"len", "=", 
+       RowBox[{"Length", "[", "list", "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"For", "[", 
+         RowBox[{
+          RowBox[{"i", "=", "1"}], ",", 
+          RowBox[{"i", "\[LessEqual]", 
+           RowBox[{"len", "-", "1"}]}], ",", 
+          RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"newList", "=", 
+            RowBox[{"Append", "[", 
+             RowBox[{"newList", ",", 
+              RowBox[{"Koch", "[", 
+               RowBox[{
+                RowBox[{"list", "[", 
+                 RowBox[{"[", "i", "]"}], "]"}], ",", 
+                RowBox[{"list", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"i", "+", "1"}], "]"}], "]"}]}], "]"}]}], "]"}]}], 
+           ";"}]}], "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", 
+        RowBox[{"Flatten", "[", 
+         RowBox[{"newList", ",", "1"}], "]"}]}], "/.", 
+       RowBox[{"{", 
+        RowBox[{"Null", "\[Rule]", "1"}], "}"}]}]}]}], "\[IndentingNewLine]", 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Graphics", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"Blue", ",", 
+       RowBox[{"Line", "[", "list", "]"}]}], "}"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"-", "1.25"}], ",", "1.25"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"-", "1.25"}], ",", "1.25"}], "}"}]}], "}"}]}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "600"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"list", ",", "initial"}], "}"}], ",", 
+     RowBox[{"{", "}"}]}], "}"}], ",", 
+   RowBox[{"Button", "[", 
+    RowBox[{"\"\<Step\>\"", ",", 
+     RowBox[{"{", 
+      RowBox[{"list", "=", 
+       RowBox[{"KochList", "[", "list", "]"}]}], "}"}]}], "]"}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.751308838819272*^9, 3.7513089230496492`*^9}, {
+  3.7513090090774307`*^9, 3.75130922457197*^9}, {3.751309255106504*^9, 
+  3.751309345048121*^9}, {3.751309418068017*^9, 3.751309425506956*^9}, {
+  3.751309535884762*^9, 3.7513095401542273`*^9}, {3.751309570609377*^9, 
+  3.751309702708808*^9}, {3.751309733237874*^9, 3.751309826165341*^9}, {
+  3.7513099468531103`*^9, 3.75130999035425*^9}, {3.7513102441313143`*^9, 
+  3.751310270263527*^9}, {3.751310307256621*^9, 3.751310348404498*^9}, {
+  3.751310378527318*^9, 
+  3.7513104217388487`*^9}},ExpressionUUID->"6b4a4d03-35f9-4e98-9da2-\
+39af2d761fd9"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`list$$ = {{
+     Rational[1, 2] 3^Rational[1, 2], 
+      Rational[-1, 2]}, {0, 1}, {Rational[-1, 2] 3^Rational[1, 2], 
+      Rational[-1, 2]}, {Rational[1, 2] 3^Rational[1, 2], 
+      Rational[-1, 2]}}, Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`list$$], {{Rational[1, 2] 3^Rational[1, 2], 
+         Rational[-1, 2]}, {0, 1}, {Rational[-1, 2] 3^Rational[1, 2], 
+         Rational[-1, 2]}, {Rational[1, 2] 3^Rational[1, 2], 
+         Rational[-1, 2]}}}, {}}, {
+      Hold[
+       Button[
+       "Step", {$CellContext`list$$ = \
+$CellContext`KochList[$CellContext`list$$]}]], 
+      Manipulate`Dump`ThisIsNotAControl}}, Typeset`size$$ = {
+    600., {298., 302.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`list$$ = {{Rational[1, 2] 3^Rational[1, 2], 
+           Rational[-1, 2]}, {0, 1}, {Rational[-1, 2] 3^Rational[1, 2], 
+           Rational[-1, 2]}, {Rational[1, 2] 3^Rational[1, 2], 
+           Rational[-1, 2]}}}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Graphics[{Blue, 
+         Line[$CellContext`list$$]}, 
+        PlotRange -> {{-1.25, 1.25}, {-1.25, 1.25}}, ImageSize -> 600], 
+      "Specifications" :> {{{$CellContext`list$$, {{
+           Rational[1, 2] 3^Rational[1, 2], 
+            Rational[-1, 2]}, {0, 1}, {Rational[-1, 2] 3^Rational[1, 2], 
+            Rational[-1, 2]}, {Rational[1, 2] 3^Rational[1, 2], 
+            Rational[-1, 2]}}}, {}}, 
+        Button[
+        "Step", {$CellContext`list$$ = \
+$CellContext`KochList[$CellContext`list$$]}]}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{645., {358., 364.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.751309142226398*^9, 3.751309207240292*^9}, {
+   3.751309275082295*^9, 3.751309314313156*^9}, 3.7513093483587227`*^9, 
+   3.7513094260838957`*^9, 3.751309540526285*^9, {3.751309574696114*^9, 
+   3.751309681612278*^9}, 3.751309736323122*^9, {3.751309770773164*^9, 
+   3.751309817294566*^9}, {3.751309953936207*^9, 3.751309990794859*^9}, {
+   3.7513102464590893`*^9, 3.751310271285705*^9}, {3.7513103101813183`*^9, 
+   3.7513103490487137`*^9}, 
+   3.751310428940537*^9},ExpressionUUID->"f3f920d6-8544-457c-8de1-\
+4e510a35f16e"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1403, 783},
+WindowMargins->{{12, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.2 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+10, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 157, 3, 98, "Title",ExpressionUUID->"05a7426e-4795-4975-acb6-381a26d65837"],
+Cell[CellGroupData[{
+Cell[762, 29, 4790, 133, 283, "Input",ExpressionUUID->"6b4a4d03-35f9-4e98-9da2-39af2d761fd9"],
+Cell[5555, 164, 3148, 62, 741, "Output",ExpressionUUID->"f3f920d6-8544-457c-8de1-4e510a35f16e"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

@@ -1,0 +1,317 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     12566,        309]
+NotebookOptionsPosition[     12121,        288]
+NotebookOutlinePosition[     12480,        304]
+CellTagsIndexPosition[     12437,        301]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[TextData[{
+ "Geometric Construction of Lengths ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["n", 
+    RowBox[{"1", "/", "2"}]], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ ", n \[Epsilon] \[DoubleStruckCapitalZ]"
+}], "Chapter",
+ CellChangeTimes->{{3.708729934629211*^9, 3.708729981987465*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"a", "=", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", "0"}], "}"}]}], ";", 
+   RowBox[{"b", "=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"-", "1"}], ",", "0"}], "}"}]}], ";", 
+   RowBox[{"c", "=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"-", "1"}], ",", "1"}], "}"}]}], ";", 
+   RowBox[{"(*", " ", 
+    RowBox[{"First", " ", "triangle", " ", "initial", " ", "settings"}], " ", 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"currentTriangle", " ", "=", " ", 
+    RowBox[{"{", 
+     RowBox[{"a", ",", "b", ",", "c", ",", "a"}], "}"}]}], ";"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Starting", " ", "triangle"}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"triangles", " ", "=", " ", 
+   RowBox[{"{", "currentTriangle", "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Graphics", "[", 
+    RowBox[{
+     RowBox[{"Line", "[", "triangles", "]"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", "plotRange"}]}], "]"}], ",", 
+   RowBox[{"Button", "[", 
+    RowBox[{"\"\<Next\>\"", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"currentTriangle", " ", "=", " ", 
+        RowBox[{"Round", "[", 
+         RowBox[{"currentTriangle", ",", ".00001"}], "]"}]}], ",", 
+       RowBox[{"currentTriangle", " ", "=", " ", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"currentTriangle", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], ",", 
+          RowBox[{"currentTriangle", "[", 
+           RowBox[{"[", "3", "]"}], "]"}], ",", 
+          RowBox[{"Flatten", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"dx", ",", "dy"}], "}"}], "/.", 
+            RowBox[{"Solve", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"currentTriangle", "[", 
+                    RowBox[{"[", "3", "]"}], "]"}], ".", 
+                   RowBox[{"{", 
+                    RowBox[{"dx", ",", "dy"}], "}"}]}], "-", 
+                  RowBox[{
+                   RowBox[{"currentTriangle", "[", 
+                    RowBox[{"[", "3", "]"}], "]"}], ".", 
+                   RowBox[{"currentTriangle", "[", 
+                    RowBox[{"[", "3", "]"}], "]"}]}], "-", 
+                  RowBox[{
+                   RowBox[{"currentTriangle", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], ".", 
+                   RowBox[{"{", 
+                    RowBox[{"dx", ",", "dy"}], "}"}]}], "+", 
+                  RowBox[{
+                   RowBox[{"currentTriangle", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], ".", 
+                   RowBox[{"currentTriangle", "[", 
+                    RowBox[{"[", "3", "]"}], "]"}]}]}], "\[Equal]", "0"}], 
+                ",", 
+                RowBox[{
+                 RowBox[{"Norm", "[", 
+                  RowBox[{
+                   RowBox[{"currentTriangle", "[", 
+                    RowBox[{"[", "3", "]"}], "]"}], "-", 
+                   RowBox[{"{", 
+                    RowBox[{"dx", ",", "dy"}], "}"}]}], "]"}], "\[Equal]", 
+                 "1"}], ",", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"Cross", "[", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"Flatten", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"currentTriangle", "[", 
+                    RowBox[{"[", "3", "]"}], "]"}], ",", "0"}], "}"}], "]"}], 
+                    "-", 
+                    RowBox[{"Flatten", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"currentTriangle", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], ",", "0"}], "}"}], 
+                    "]"}]}], ",", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"dx", ",", "dy", ",", "0"}], "}"}], "-", 
+                    RowBox[{"Flatten", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"currentTriangle", "[", 
+                    RowBox[{"[", "3", "]"}], "]"}], ",", "0"}], "}"}], 
+                    "]"}]}]}], "]"}], "[", 
+                  RowBox[{"[", "3", "]"}], "]"}], "<", "0"}]}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"dx", ",", "dy"}], "}"}]}], "]"}]}], "]"}], ",", 
+          RowBox[{"currentTriangle", "[", 
+           RowBox[{"[", "1", "]"}], "]"}]}], "}"}]}], ",", 
+       RowBox[{"triangles", "=", 
+        RowBox[{"Append", "[", 
+         RowBox[{"triangles", ",", "currentTriangle"}], "]"}]}]}], "}"}]}], 
+    "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"plotRange", ",", "5", ",", "\"\<Plot Range\>\""}], "}"}], ",", 
+     "5", ",", "15"}], "}"}], ",", 
+   RowBox[{"ControlPlacement", "\[Rule]", "Left"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.7087300324344788`*^9, 3.708730104961315*^9}, {
+  3.708730470413198*^9, 3.7087304977331247`*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`plotRange$$ = 5, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[
+       Button[
+       "Next", {$CellContext`currentTriangle = 
+         Round[$CellContext`currentTriangle, 
+           0.00001], $CellContext`currentTriangle = {
+           Part[$CellContext`currentTriangle, 1], 
+           Part[$CellContext`currentTriangle, 3], 
+           Flatten[
+            ReplaceAll[{$CellContext`dx, $CellContext`dy}, 
+             Solve[{Dot[
+                  
+                  Part[$CellContext`currentTriangle, 
+                   3], {$CellContext`dx, $CellContext`dy}] - Dot[
+                 Part[$CellContext`currentTriangle, 3], 
+                 Part[$CellContext`currentTriangle, 3]] - Dot[
+                 
+                 Part[$CellContext`currentTriangle, 
+                  1], {$CellContext`dx, $CellContext`dy}] + Dot[
+                  Part[$CellContext`currentTriangle, 1], 
+                  Part[$CellContext`currentTriangle, 3]] == 0, 
+               Norm[Part[$CellContext`currentTriangle, 
+                   3] - {$CellContext`dx, $CellContext`dy}] == 1, Part[
+                 Cross[Flatten[{
+                    Part[$CellContext`currentTriangle, 3], 0}] - Flatten[{
+                    Part[$CellContext`currentTriangle, 1], 
+                    0}], {$CellContext`dx, $CellContext`dy, 0} - Flatten[{
+                    Part[$CellContext`currentTriangle, 3], 0}]], 3] < 
+               0}, {$CellContext`dx, $CellContext`dy}]]], 
+           Part[$CellContext`currentTriangle, 1]}, $CellContext`triangles = 
+         Append[$CellContext`triangles, $CellContext`currentTriangle]}]], 
+      Manipulate`Dump`ThisIsNotAControl}, {{
+       Hold[$CellContext`plotRange$$], 5, "Plot Range"}, 5, 15}}, 
+    Typeset`size$$ = {360., {178., 182.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`plotRange$4578$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`plotRange$$ = 5}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`plotRange$$, $CellContext`plotRange$4578$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Graphics[
+        Line[$CellContext`triangles], PlotRange -> $CellContext`plotRange$$], 
+      "Specifications" :> {
+        Button[
+        "Next", {$CellContext`currentTriangle = 
+          Round[$CellContext`currentTriangle, 
+            0.00001], $CellContext`currentTriangle = {
+            Part[$CellContext`currentTriangle, 1], 
+            Part[$CellContext`currentTriangle, 3], 
+            Flatten[
+             ReplaceAll[{$CellContext`dx, $CellContext`dy}, 
+              Solve[{Dot[
+                   
+                   Part[$CellContext`currentTriangle, 
+                    3], {$CellContext`dx, $CellContext`dy}] - Dot[
+                  Part[$CellContext`currentTriangle, 3], 
+                  Part[$CellContext`currentTriangle, 3]] - Dot[
+                  
+                  Part[$CellContext`currentTriangle, 
+                   1], {$CellContext`dx, $CellContext`dy}] + Dot[
+                   Part[$CellContext`currentTriangle, 1], 
+                   Part[$CellContext`currentTriangle, 3]] == 0, 
+                Norm[Part[$CellContext`currentTriangle, 
+                    3] - {$CellContext`dx, $CellContext`dy}] == 1, Part[
+                  Cross[Flatten[{
+                    Part[$CellContext`currentTriangle, 3], 0}] - Flatten[{
+                    Part[$CellContext`currentTriangle, 1], 
+                    0}], {$CellContext`dx, $CellContext`dy, 0} - Flatten[{
+                    Part[$CellContext`currentTriangle, 3], 0}]], 3] < 
+                0}, {$CellContext`dx, $CellContext`dy}]]], 
+            Part[$CellContext`currentTriangle, 1]}, $CellContext`triangles = 
+          
+          Append[$CellContext`triangles, $CellContext`currentTriangle]}], \
+{{$CellContext`plotRange$$, 5, "Plot Range"}, 5, 15}}, 
+      "Options" :> {ControlPlacement -> Left}, "DefaultOptions" :> {}],
+     ImageSizeCache->{671., {207., 213.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.7087299979158363`*^9, {3.70873003553715*^9, 3.708730057923376*^9}, {
+   3.708730092210454*^9, 3.7087301166677933`*^9}, {3.708730471426214*^9, 
+   3.708730528316285*^9}, 3.708730579351665*^9, 3.708731246570685*^9, 
+   3.7087317155343246`*^9, 3.708732177565699*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ StyleBox["Tools for the construction\n",
+  FontWeight->"Bold"],
+ "We are given a straight edge, a compass and a unit length. With these we \
+can construct right angles and thus right triangles.\n",
+ StyleBox["The construction",
+  FontWeight->"Bold"],
+ "\nWe start with the legs of a 1 by 1 right triangle and construct its \
+hypotenuse, which will have length root(2). We now use that hypotenuses as a \
+base and construct a perpendicular leg of length 1; the results right \
+triangle with have hypotenuse root(root(2)^2 + 1) = root(3), and so forth.\n\
+",
+ StyleBox["Using the model\n",
+  FontWeight->"Bold"],
+ "Hitting the \[OpenCurlyDoubleQuote]Next\[CloseCurlyDoubleQuote] button will \
+construct the next right triangle. The \[OpenCurlyDoubleQuote]Plot Range\
+\[CloseCurlyDoubleQuote] slider will allow you to zoom out the image."
+}], "Text",
+ CellChangeTimes->{{3.7087301361292458`*^9, 3.7087303535437613`*^9}}]
+}, Open  ]]
+},
+WindowSize->{1286, 743},
+WindowMargins->{{Automatic, 11}, {Automatic, 1}},
+FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 310, 9, 66, "Chapter"],
+Cell[CellGroupData[{
+Cell[915, 35, 5082, 127, 285, "Input"],
+Cell[6000, 164, 5156, 100, 437, "Output"]
+}, Open  ]],
+Cell[11171, 267, 934, 18, 144, "Text"]
+}, Open  ]]
+}
+]
+*)
+

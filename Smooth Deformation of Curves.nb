@@ -1,0 +1,341 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     12490,        333]
+NotebookOptionsPosition[     11868,        305]
+NotebookOutlinePosition[     12226,        321]
+CellTagsIndexPosition[     12183,        318]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Visualization of Homotopy", "Title",
+ CellChangeTimes->{{3.738254044012866*^9, 3.738254078726027*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"SetDirectory", "[", "\"\</Users/Ajeet/Desktop/ICERM\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"<<", "Utilities.m"}], "\[IndentingNewLine]", 
+ RowBox[{"<<", " ", "HyperbolicToolbox_v1.0.m"}]}], "Input",
+ CellChangeTimes->{{3.738254044012866*^9, 3.738254047637866*^9}}],
+
+Cell[BoxData["\<\"/Users/Ajeet/Desktop/ICERM\"\>"], "Output",
+ CellChangeTimes->{3.738253306307765*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[Alpha]", "[", "t_", "]"}], ":=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{".5", "*", 
+        RowBox[{"Cos", "[", 
+         RowBox[{"1.2", "*", "t", "*", "2", "*", "\[Pi]"}], "]"}], "*", 
+        RowBox[{"Sin", "[", 
+         RowBox[{"4", "*", "t", "*", "2", "*", "\[Pi]"}], "]"}]}], "+", 
+       ".7"}], ")"}], "*", 
+     RowBox[{"Cos", "[", 
+      RowBox[{"t", "*", "2", "*", "\[Pi]"}], "]"}]}], "+", 
+    RowBox[{"\[ImaginaryI]", "*", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{".5", "*", 
+        RowBox[{"Cos", "[", 
+         RowBox[{"2.1", "*", "2", "*", "t", "*", "2", "*", "\[Pi]"}], "]"}], 
+        "*", 
+        RowBox[{"Sin", "[", 
+         RowBox[{"t", "*", "2", "*", "\[Pi]"}], "]"}]}], "+", ".7"}], ")"}], 
+     "*", 
+     RowBox[{"Sin", "[", 
+      RowBox[{"t", "*", "2", "*", "\[Pi]"}], "]"}]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[Beta]", "[", "t_", "]"}], ":=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"1", "-", 
+       RowBox[{"Sin", "[", 
+        RowBox[{"t", "*", "2", "*", "\[Pi]"}], "]"}]}], ")"}], "*", 
+     RowBox[{"Cos", "[", 
+      RowBox[{"t", "*", "2", "*", "\[Pi]"}], "]"}]}], "+", 
+    RowBox[{"\[ImaginaryI]", "*", 
+     RowBox[{"(", 
+      RowBox[{"1", "-", 
+       RowBox[{"Sin", "[", 
+        RowBox[{"t", "*", "2", "*", "\[Pi]"}], "]"}]}], ")"}], "*", 
+     RowBox[{"Sin", "[", 
+      RowBox[{"t", "*", "2", "*", "\[Pi]"}], "]"}]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"ParametricPlot", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"ToR2", "[", 
+        RowBox[{"\[Alpha]", "[", "t", "]"}], "]"}], ",", 
+       RowBox[{"ToR2", "[", 
+        RowBox[{"\[Beta]", "[", "t", "]"}], "]"}], ",", 
+       RowBox[{"ToR2", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"1", "-", "\[Tau]"}], ")"}], "*", 
+          RowBox[{"\[Alpha]", "[", "t", "]"}]}], "+", 
+         RowBox[{"\[Tau]", "*", 
+          RowBox[{"\[Beta]", "[", "t", "]"}]}]}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", "2"}], ",", 
+     RowBox[{"AspectRatio", "\[Rule]", "1"}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Tau]", ",", "0"}], "}"}], ",", "0", ",", "1"}], "}"}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.738252458159626*^9, 3.738252546138969*^9}, {
+  3.738252600423333*^9, 3.738252628412263*^9}, {3.738253332322382*^9, 
+  3.738253348047687*^9}, {3.7382534348932133`*^9, 3.738253645653283*^9}, {
+  3.738254575824855*^9, 3.7382546473571987`*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`\[Tau]$$ = 0., Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Tau]$$], 0}, 0, 1}}, Typeset`size$$ = {
+    576., {288., 292.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`\[Tau]$184650$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`\[Tau]$$ = 0}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`\[Tau]$$, $CellContext`\[Tau]$184650$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> ParametricPlot[{
+         $CellContext`ToR2[
+          $CellContext`\[Alpha][$CellContext`t]], 
+         $CellContext`ToR2[
+          $CellContext`\[Beta][$CellContext`t]], 
+         $CellContext`ToR2[(
+            1 - $CellContext`\[Tau]$$) $CellContext`\[Alpha][$CellContext`t] + \
+$CellContext`\[Tau]$$ $CellContext`\[Beta][$CellContext`t]]}, {$CellContext`t,
+          0, 1}, PlotRange -> 2, AspectRatio -> 1, ImageSize -> Large], 
+      "Specifications" :> {{{$CellContext`\[Tau]$$, 0}, 0, 1}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{621., {333., 339.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.738252625291548*^9, 3.738252628712927*^9}, {
+   3.738253341397128*^9, 3.738253348461433*^9}, 3.738253468439426*^9, {
+   3.738253505882341*^9, 3.738253586635837*^9}, 3.7382536470538473`*^9, {
+   3.738254582525794*^9, 3.738254648017104*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"ParametricPlot", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"ToR2", "[", 
+        RowBox[{"\[Alpha]", "/.", 
+         RowBox[{"t", "\[Rule]", "s"}]}], "]"}], ",", 
+       RowBox[{"ToR2", "[", 
+        RowBox[{"\[Beta]", "/.", 
+         RowBox[{"t", "\[Rule]", "s"}]}], "]"}], ",", 
+       RowBox[{"ToR2", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"1", "-", "\[Tau]"}], ")"}], "*", 
+          RowBox[{"(", 
+           RowBox[{"\[Alpha]", "/.", 
+            RowBox[{"t", "\[Rule]", "s"}]}], ")"}]}], "+", 
+         RowBox[{"\[Tau]", "*", 
+          RowBox[{"(", 
+           RowBox[{"\[Beta]", "/.", 
+            RowBox[{"t", "\[Rule]", "s"}]}], ")"}]}]}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"s", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", "2"}], ",", 
+     RowBox[{"AspectRatio", "\[Rule]", "1"}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"\[Alpha]", ",", 
+      RowBox[{
+       RowBox[{"1.5", "*", 
+        RowBox[{"Sin", "[", 
+         RowBox[{"2", "*", "\[Pi]", "*", "t"}], "]"}]}], "+", 
+       RowBox[{"\[ImaginaryI]", "*", 
+        RowBox[{"Cos", "[", 
+         RowBox[{"2", "*", "\[Pi]", "*", "t"}], "]"}]}]}]}], "}"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"\[Beta]", ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Cos", "[", 
+         RowBox[{"5", "*", "2", "*", "\[Pi]", "*", "t"}], "]"}], "*", 
+        RowBox[{"Cos", "[", 
+         RowBox[{"2", "*", "\[Pi]", "*", "t"}], "]"}]}], "+", 
+       RowBox[{"\[ImaginaryI]", "*", 
+        RowBox[{"Cos", "[", 
+         RowBox[{"5", "*", "2", "*", "\[Pi]", "*", "t"}], "]"}], "*", 
+        RowBox[{"Sin", "[", 
+         RowBox[{"2", "*", "\[Pi]", "*", "t"}], "]"}]}]}]}], "}"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Tau]", ",", "0"}], "}"}], ",", "0", ",", "1"}], "}"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.738253674870914*^9, 3.738253739689128*^9}, {
+  3.7382537766201477`*^9, 3.738253986522851*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`\[Alpha]$$ = 
+    Complex[0, 1] Cos[2 Pi $CellContext`t] + 
+    1.5 Sin[2 Pi $CellContext`t], $CellContext`\[Beta]$$ = 
+    Cos[2 Pi $CellContext`t] Cos[10 Pi $CellContext`t] + 
+    Complex[0, 1] Cos[10 Pi $CellContext`t] 
+     Sin[2 Pi $CellContext`t], $CellContext`\[Tau]$$ = 0., Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Alpha]$$], Complex[0, 1] Cos[2 Pi $CellContext`t] + 
+       1.5 Sin[2 Pi $CellContext`t]}}, {{
+       Hold[$CellContext`\[Beta]$$], 
+       Cos[2 Pi $CellContext`t] Cos[10 Pi $CellContext`t] + 
+       Complex[0, 1] Cos[10 Pi $CellContext`t] Sin[2 Pi $CellContext`t]}}, {{
+       Hold[$CellContext`\[Tau]$$], 0}, 0, 1}}, Typeset`size$$ = {
+    576., {288., 292.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`\[Tau]$177186$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`\[Alpha]$$ = 
+        Complex[0, 1] Cos[2 Pi $CellContext`t] + 
+         1.5 Sin[2 Pi $CellContext`t], $CellContext`\[Beta]$$ = 
+        Cos[2 Pi $CellContext`t] Cos[10 Pi $CellContext`t] + 
+         Complex[0, 1] Cos[10 Pi $CellContext`t] 
+          Sin[2 Pi $CellContext`t], $CellContext`\[Tau]$$ = 0}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`\[Tau]$$, $CellContext`\[Tau]$177186$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> ParametricPlot[{
+         $CellContext`ToR2[
+          
+          ReplaceAll[$CellContext`\[Alpha]$$, $CellContext`t -> \
+$CellContext`s]], 
+         $CellContext`ToR2[
+          
+          ReplaceAll[$CellContext`\[Beta]$$, $CellContext`t -> \
+$CellContext`s]], 
+         $CellContext`ToR2[(1 - $CellContext`\[Tau]$$) 
+           ReplaceAll[$CellContext`\[Alpha]$$, $CellContext`t -> \
+$CellContext`s] + $CellContext`\[Tau]$$ 
+           ReplaceAll[$CellContext`\[Beta]$$, $CellContext`t -> \
+$CellContext`s]]}, {$CellContext`s, 0, 1}, PlotRange -> 2, AspectRatio -> 1, 
+        ImageSize -> Large], 
+      "Specifications" :> {{{$CellContext`\[Alpha]$$, 
+          Complex[0, 1] Cos[2 Pi $CellContext`t] + 
+          1.5 Sin[2 Pi $CellContext`t]}}, {{$CellContext`\[Beta]$$, 
+          Cos[2 Pi $CellContext`t] Cos[10 Pi $CellContext`t] + 
+          Complex[0, 1] Cos[10 Pi $CellContext`t] 
+           Sin[2 Pi $CellContext`t]}}, {{$CellContext`\[Tau]$$, 0}, 0, 1}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{621., {363., 369.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.7382538635294857`*^9, 3.738253921104507*^9}, {
+  3.7382539582933617`*^9, 3.738253987245737*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1407, 771},
+WindowMargins->{{5, Automatic}, {Automatic, 6}},
+FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 108, 1, 92, "Title"],
+Cell[CellGroupData[{
+Cell[713, 27, 299, 5, 75, "Input"],
+Cell[1015, 34, 103, 1, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1155, 40, 2796, 79, 96, "Input"],
+Cell[3954, 121, 2229, 43, 689, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6220, 169, 2199, 62, 54, "Input"],
+Cell[8422, 233, 3418, 68, 749, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
